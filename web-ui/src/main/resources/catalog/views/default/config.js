@@ -25,8 +25,14 @@
             gnMap.createLayerForType('osm')
           ];
 
+          viewerSettings.bingKey = 'AnElW2Zqi4fI-9cYx1LHiQfokQ9GrNzcjOh_' +
+              'p_0hkO1yo78ba8zTLARcLBIf8H6D';
+
           viewerSettings.servicesUrl =
             viewerSettings.mapConfig.listOfServices || {};
+
+          // WMS settings
+          viewerSettings.singleTileWMS = true;
 
           var bboxStyle = new ol.style.Style({
             stroke: new ol.style.Stroke({

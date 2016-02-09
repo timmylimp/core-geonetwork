@@ -28,6 +28,8 @@ import java.net.URLDecoder;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.LinkedHashMap;
+import java.util.LinkedHashSet;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Scanner;
@@ -161,7 +163,7 @@ public class LuceneQueryBuilder {
 
     private Query buildBaseQuery(LuceneQueryInput luceneQueryInput) {
         // Remember which range fields have been processed
-        Set<String> processedRangeFields = new HashSet<String>();
+        Set<String> processedRangeFields = new LinkedHashSet<String>();
 
         // top query to hold all sub-queries for each search parameter
          BooleanQuery query = new BooleanQuery();
@@ -181,7 +183,7 @@ public class LuceneQueryBuilder {
         // here such _OR_ fields are parsed, an OR searchCriteria map is created, and they're removed from vanilla
         // searchCriteria map.
         //
-        Map<String, Set<String>> searchCriteriaOR = new HashMap<String, Set<String>>();
+        Map<String, Set<String>> searchCriteriaOR = new LinkedHashMap<String, Set<String>>();
 
         for (Iterator<Entry<String, Set<String>>> i = searchCriteria.entrySet().iterator(); i.hasNext();) {
             Entry<String, Set<String>> entry = i.next();
@@ -233,7 +235,7 @@ public class LuceneQueryBuilder {
                     }
                     else {
                             Set<String> values = searchCriteriaOR.get(field);
-                            if(values == null) values = new HashSet<String>();
+                            if(values == null) values = new LinkedHashSet<String>();
                             values.addAll(fieldValues);
                             searchCriteriaOR.put(field, values);
                     }
@@ -303,7 +305,7 @@ public class LuceneQueryBuilder {
         }
 
         // Avoid search by field who control privileges
-        Set<String> fields = new HashSet<String>();
+        Set<String> fields = new LinkedHashSet<String>();
         for(String requestedField : searchCriteria.keySet()) {
             if(!(UserQueryInput.SECURITY_FIELDS.contains(requestedField) || SearchParameter.EDITABLE.equals(requestedField))) {
                 fields.add(requestedField);

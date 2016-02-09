@@ -23,13 +23,14 @@
 
 package org.fao.geonet.kernel.search;
 
+import java.util.HashSet;
+import java.util.LinkedHashSet;
+import java.util.List;
+import java.util.Set;
+
 import org.apache.commons.lang.StringUtils;
 import org.fao.geonet.kernel.setting.SettingInfo;
 import org.jdom.Element;
-
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
 
 /**
  * Input to {@link LuceneQueryBuilder}, consisting of user-provided parameters plus system-provided parameters.
@@ -71,7 +72,7 @@ public class LuceneQueryInput extends UserQueryInput {
         @SuppressWarnings("unchecked")
         List<Element> groupsE = (List<Element>)jdom.getChildren(SearchParameter.GROUP);
         if(groupsE != null) {
-            Set<String> groups = new HashSet<String>();
+            Set<String> groups = new LinkedHashSet<String>();
             for(Element groupE : groupsE) {
                 groups.add(groupE.getText());
             }
@@ -88,7 +89,7 @@ public class LuceneQueryInput extends UserQueryInput {
         }
         @SuppressWarnings("unchecked")
         List<Element> groupOwnersE = (List<Element>)jdom.getChildren(SearchParameter.GROUPOWNER);
-        Set<String> groupOwners = new HashSet<String>();
+        Set<String> groupOwners = new LinkedHashSet<String>();
         for(Element groupOwnerE : groupOwnersE) {
             groupOwners.add(groupOwnerE.getText());
         }
@@ -144,6 +145,9 @@ public class LuceneQueryInput extends UserQueryInput {
     }
 
     public void setGroups(Set<String> groups) {
+        if(this.groups == null) {
+            this.groups = new LinkedHashSet<String>();
+        }
         this.groups = groups;
     }
 
@@ -196,7 +200,7 @@ public class LuceneQueryInput extends UserQueryInput {
 
     public void setGroupOwners(Set<String> groupOwners) {
         if(this.groupOwners == null) {
-            this.groupOwners = new HashSet<String>();
+            this.groupOwners = new LinkedHashSet<String>();
         }
         this.groupOwners = groupOwners;
     }

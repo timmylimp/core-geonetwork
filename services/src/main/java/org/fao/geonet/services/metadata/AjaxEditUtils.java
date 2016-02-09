@@ -27,6 +27,11 @@ import com.google.common.base.Optional;
 
 import jeeves.server.UserSession;
 import jeeves.server.context.ServiceContext;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * // --------------------------------------------------------------------------
@@ -109,7 +114,7 @@ public class AjaxEditUtils extends EditUtils {
 
         // Store XML fragments to be handled after other elements update
         Map<String, String> xmlInputs = new HashMap<String, String>();
-        Map<String, AddElemValue> xmlAndXpathInputs = new HashMap<String, AddElemValue>();
+        LinkedHashMap<String, AddElemValue> xmlAndXpathInputs = new LinkedHashMap<String, AddElemValue>();
 
         // --- update elements
         for (Map.Entry<String, String> entry : changes.entrySet()) {
