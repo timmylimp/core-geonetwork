@@ -104,7 +104,7 @@ li.active > a{
 </style>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-
+<script src="js/bootstrap.min.js"></script>
 <body>
 <script>
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -117,14 +117,13 @@ li.active > a{
 
  </script>
 
-
  <div class="container-fluid"> 
         <div> 
             
             <img src="../../catalog/views/default/images/Logo.png" class="img-responsive">
         
         </div> 
-            <p class="navbar-text navbar-right" id="nav_right">
+            <p class="navbar-text navbar-right" id="nav_right" style="position:static;bottom:0;">
                 <span data-ng-show="authenticated">
                     <a href="admin.console#/organization/users?userOrGroup={{user.username}}"
                         title="{{'userDetails' | translate}}"
@@ -146,8 +145,11 @@ li.active > a{
                       {{'signout' | translate}}
                     </a>
                 </span>
-                 <span data-ng-show="!authenticated && service !== 'catalog.signin'">
-                    <a href="{{pages.signin}}"
+				<span data-ng-show="!authenticated && service !== 'catalog.signin'">
+				<!-- <a href="/geonetwork/srv/tha/catalog.search#/home#profile" data-toggle="modal" data-target=".bs-example-modal-sm">
+				<i class="fa fa-sign-in"/>&nbsp; เข้าสู่ระบบ</a> -->
+
+					<a href="{{pages.signin}}"
                        title="{{'signIn'|translate}}"
                        data-ng-keypress="$event">
                        <i class="fa fa-sign-in"/>&nbsp;
@@ -159,42 +161,7 @@ li.active > a{
             
         
       </div>
-      <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
-          <div class="modal-dialog modal-sm">
-            <div class="modal-content">
-              <div class="row">
-                    <div class="col-md-12 text-right">
-                        <button type="button" class="close close-pad" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-                    </div>
-              </div>
-              <div class="row">
-                    <div class="col-md-12 text-center">
-                       <h2 class="modal-co">เข้าสู่ระบบ</h2>
-                    </div>  
-              </div>    
-              <div class="row">
-                    <div class="col-md-10 col-md-offset-1 text-center">
-                        <input type="text" class="form-control" placeholder="ชื่อผู้ใช้">
-                    </div>  
-              </div>
-              <div class="row modal-space">
-                    <div class="col-md-10 col-md-offset-1 text-center">
-                        <input type="text" class="form-control " placeholder="รหัสผ่าน">
-                    </div>  
-              </div> 
-              <div class="row">
-                    <div class="col-md-10 col-md-offset-1 modal-link">
-                        <a href="#">ลืมรหัสผ่าน</a>
-                    </div>  
-              </div>
-              <div class="row">
-                    <div class="col-md-8 col-md-offset-2 ">
-                        <button type="button" class="btn orange-bg border-norad form-control btn-modal" >เข้าสู่ระบบ</button>
-                    </div>  
-              </div> 
-            </div>
-          </div>
-      </div>
+    
 
 
 <div data-gn-alert-manager=""></div>
@@ -284,7 +251,46 @@ li.active > a{
             <p class="white">Copyright © 2016 GISTDA. All rights reserved.</p>
         </div>
     </footer>
-    
+ <div  class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" id="mySmallModalLabel">
+		  <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+              <div class="row">
+                    <div class="col-md-12 text-right">
+                        <button type="button" class="close close-pad" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                    </div>
+              </div>
+              <div class="row">
+                    <div class="col-md-12 text-center">
+                       <h2 class="modal-co">เข้าสู่ระบบ</h2>
+                    </div>  
+              </div>    
+              <div class="row">
+                    <div class="col-md-10 col-md-offset-1 text-center">
+                        <input type="text" class="form-control" placeholder="ชื่อผู้ใช้">
+                    </div>  
+              </div>
+              <div class="row modal-space">
+                    <div class="col-md-10 col-md-offset-1 text-center">
+                        <input type="text" class="form-control " placeholder="รหัสผ่าน">
+                    </div>  
+              </div> 
+              <div class="row">
+                    <div class="col-md-10 col-md-offset-1 modal-link">
+                        <a href="#">ลืมรหัสผ่าน</a>
+                    </div>  
+              </div>
+			  <input type="hidden" name="redirectUrl" data-ng-model="redirectUrl" value="{{redirectUrl}}"/>
+              <div class="row">
+                    <div class="col-md-8 col-md-offset-2 ">
+                        <button type="button" class="btn orange-bg border-norad form-control btn-modal" data-ng-disabled="!gnSigninForm.$valid">เข้าสู่ระบบ</button>
+                    </div>  
+              </div> 
+            </div>
+          </div>
+		  </form>
+		   <br/>
+		</div>
+      </div>   
 <!--<div class="navbar navbar-default gn-bottom-bar">
   <ul class="nav navbar-nav">
     <li><a href="http://geonetwork-opensource.org/">

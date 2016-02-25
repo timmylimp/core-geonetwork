@@ -1,3 +1,22 @@
+<!-- Add StyleSheet -->
+<style type="text/css">
+.gn-top-bar{
+    padding: 0 0px !important;
+}
+.container-fluid{
+	background-color:#fafafa;
+}
+.navbar{
+	border-bottom:0px;
+}
+.navbar-nav > li > a:hover{
+    text-decoration: none;
+    background-color: #eeeeee !important;
+	border-bottom:1px solid #eeeeee;
+	color:#2a6496 !important;
+}
+</style>
+<!-- -->
 <div class="container-fluid">
   <div class="navbar-header">
     <button type="button"
@@ -12,16 +31,121 @@
       <span class="icon-bar"></span>
     </button>
   </div>
-  <div>
-	 <h3><span class="visible-lg" data-translate="">systemName</span></h3> 
+  <div style="background-color:#fafafa;">
+	 <img src="../../catalog/views/default/images/Logo.png">
+
+            <p class="navbar-text navbar-right" id="nav_right">
+                <span data-ng-show="authenticated">
+                    <a href="admin.console#/organization/users?userOrGroup={{user.username}}"
+                        title="{{'userDetails' | translate}}"
+                        class="hidden-xs btn btn-link">
+                       <img class="img-circle"
+                            data-ng-src="http://gravatar.com/avatar/{{user.email | md5}}?s=18"/>
+                       {{user.name}} {{user.surname}} ({{user.profile | translate}})
+                       <span class="alert alert-danger ng-hide" data-ng-show="session.remainingTime > 0 &&
+                                           session.remainingTime < session.alertInTitleWhen"
+                               data-translate="" data-translate-values="{remainingTime: '{{session.remainingTime}}'}">
+                         sessionWillExpireIn
+                       </span>
+                     </a>
+                </span>
+                <span data-ng-show="authenticated">
+                    <a href="../../j_spring_security_logout"
+                       title="{{'signout' | translate}}">
+                      <i class="fa fa-sign-out"></i>&nbsp;
+                      {{'signout' | translate}}
+                    </a>
+                </span>
+				<span data-ng-show="!authenticated && service !== 'catalog.signin'">
+				<!-- <a href="/geonetwork/srv/tha/catalog.search#/home#profile" data-toggle="modal" data-target=".bs-example-modal-sm">
+				<i class="fa fa-sign-in"/>&nbsp; เข้าสู่ระบบ</a> -->
+
+					<a href="{{pages.signin}}"
+                       title="{{'signIn'|translate}}"
+                       data-ng-keypress="$event">
+                       <i class="fa fa-sign-in"/>&nbsp;
+                       {{'signIn' | translate}}
+                    </a>
+                  </span>
+               
+            </p> 
+	 <!-- menu 
+    <ul class="nav navbar-nav navbar-right">
+      <li data-ng-show="authenticated">
+        <a href="admin.console#/organization/users?userOrGroup={{user.username}}"
+           title="{{'userDetails' | translate}}"
+           class="hidden-xs btn btn-link">
+          <img class="img-circle"
+               data-ng-src="http://gravatar.com/avatar/{{user.email | md5}}?s=18"/>
+          {{user.name}} {{user.surname}} ({{user.profile | translate}})
+          <span class="alert alert-danger ng-hide" data-ng-show="session.remainingTime > 0 &&
+                              session.remainingTime < session.alertInTitleWhen"
+                  data-translate="" data-translate-values="{remainingTime: '{{session.remainingTime}}'}">
+            sessionWillExpireIn
+          </span>
+        </a>
+      </li>
+      <li data-ng-show="authenticated">
+        <a href="../../j_spring_security_logout"
+           title="{{'signout' | translate}}">
+          <i class="fa fa-sign-out"></i>&nbsp;
+          {{'signout' | translate}}
+        </a>
+      </li>
+      <li data-ng-show="!authenticated && service !== 'catalog.signin'">
+			<a href="{{pages.signin}}"
+           title="{{'signIn'|translate}}"
+           data-ng-keypress="$event">
+           <i class="fa fa-sign-in"/>&nbsp;
+           {{'signIn' | translate}}
+        </a>
+      </li>
+    </ul> -->
   </div>
+  <!-- main
+  <style type="text/css">
+	#navbar{
+		margin-bottom: 0px;
+		padding-left: 0px;
+		border: 0px;
+	}
+	li.actived > a{
+	color: #ef9b00;
+	font-weight: bold;
+	}
+	#mark{
+    padding-top: 13px;
+	}
+	</style>
+   <div id="navbar" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav navbar-right" >
+            <li class="actived""><a href="#">{{info.site.name}}</a></li>
+            <li><a data-gn-active-tb-item="catalog.search#/search"  title="{{'search' | translate}}"  ><span class="visible-lg" data-translate="">ค้นหา</span></a></li>
+            <li><a data-gn-active-tb-item="catalog.search#/map" title="{{'map' | translate}}" ><span class="visible-lg" >แผนที่</span></a></li>
+            <li id="mark">|</li>
+            <li><a data-gn-active-tb-item="catalog.search#/register"  title="{{'register' | translate}}" ><span class="visible-lg" data-translate="">ลงทะเบียน</span></a></li>
+            <li ><a data-gn-active-tb-item="catalog.search#/links" title="{{'Links' | translate}}" > <span class="visible-lg" data-translate="" >ลิงก์</span></a></li>
+            <li><a data-gn-active-tb-item="catalog.search#/help"  title="{{'Help' | translate}}"  > <span class="visible-lg" data-translate="">ช่วยเหลือ</span></a></li>
+            <li><a data-gn-active-tb-item="catalog.search#/about" title="{{'About' | translate}}" ><span class="visible-lg" data-translate="">เกี่ยวกับ</span></a></li> 
+            <li><a data-gn-active-tb-item="catalog.search#/contactus" title="{{'Contact Us' | translate}}" ><span class="visible-lg" data-translate="">ติดต่อ</span></a></li>
+<!--            <li>
+                 <form class="navbar-form navbar-right" role="language">
+                        <div class="form-group pull-right"
+                             data-gn-language-switcher="lang"
+                             data-langs="langs"
+                             data-lang-labels="langLabels"/>
+                      </form>
+              </li>-->
+          </ul>
+        </div><!--/.nav-collapse -->
+  <!-- -->
   <div id="navbar" class="navbar-collapse collapse">
-    <ul class="nav navbar-nav">
+    <ul class="nav navbar-nav navbar-right" style="padding-right:15px;">
       <li>
         <a data-gn-active-tb-item="catalog.search#/home">
           <img class="gn-logo"
                data-ng-src="../../images/logos/{{info.site.siteId}}.png?{{info.site.lastUpdate}}"/>
-          <span class="visible-lg">{{info.site.name}}</span>
+          <span class="visible-lg"></span>
         </a>
       </li>
       <li>
@@ -110,15 +234,13 @@
           <span class="visible-lg" data-translate="">About</span>
         </a>
       </li>  
-    </ul>
-
-
-   <form class="navbar-form navbar-right" role="language">
-      <div class="form-group pull-right"
+	<form class="navbar-form navbar-right" role="language">
+		<div class="form-group pull-right"
            data-gn-language-switcher="lang"
            data-langs="langs"
            data-lang-labels="langLabels"/>
     </form>
+    </ul>
    <!--  <form class="navbar-form navbar-right" role="language">
     <div style="padding-top: 5px;">
         <select data-ng-model="lang" style="color:Green; 
@@ -147,38 +269,5 @@
     </div>
 
     </form> -->
-
-
-    <ul class="nav navbar-nav navbar-right">
-      <li data-ng-show="authenticated">
-        <a href="admin.console#/organization/users?userOrGroup={{user.username}}"
-           title="{{'userDetails' | translate}}"
-           class="hidden-xs btn btn-link">
-          <img class="img-circle"
-               data-ng-src="http://gravatar.com/avatar/{{user.email | md5}}?s=18"/>
-          {{user.name}} {{user.surname}} ({{user.profile | translate}})
-          <span class="alert alert-danger ng-hide" data-ng-show="session.remainingTime > 0 &&
-                              session.remainingTime < session.alertInTitleWhen"
-                  data-translate="" data-translate-values="{remainingTime: '{{session.remainingTime}}'}">
-            sessionWillExpireIn
-          </span>
-        </a>
-      </li>
-      <li data-ng-show="authenticated">
-        <a href="../../j_spring_security_logout"
-           title="{{'signout' | translate}}">
-          <i class="fa fa-sign-out"></i>&nbsp;
-          {{'signout' | translate}}
-        </a>
-      </li>
-      <li data-ng-show="!authenticated && service !== 'catalog.signin'">
-        <a href="{{pages.signin}}"
-           title="{{'signIn'|translate}}"
-           data-ng-keypress="$event">
-           <i class="fa fa-sign-in"/>&nbsp;
-           {{'signIn' | translate}}
-        </a>
-      </li>
-    </ul>
   </div>
 </div>
