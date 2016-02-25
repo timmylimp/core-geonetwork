@@ -1,0 +1,250 @@
+
+<style>
+		.success, .error{
+		margin: 10px 0px;
+		padding:10px;
+		}
+		.success {
+		    color: #4F8A10;
+		    background-color: #DFF2BF;
+		    display:none;
+		}
+		.error {
+		    color: #D8000C;
+		    background-color: #FEEFB3;
+		    display: none;
+		}
+</style>
+
+<div class="row">
+ <div class="col-lg-8">
+    
+    <div class="panel panel-default" >
+    	  <div class="panel-body">
+    	  
+    	  <form id="gn-user-register" name="gnUserRegister" class="form-horizontal" role="form">
+          
+          <fieldset>
+
+            <div class="form-group">
+              <label class="control-label col-sm-3" data-translate="">ชื่อ</label>
+              <div class="col-sm-9">
+                <input type="text" id="NAME" name="name" class="form-control"  data-ng-required="true"/>   
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label col-sm-3" data-translate="">นามสกุล</label>
+              <div class="col-sm-9">
+                <input type="text" id="SURNAME" name="surname" class="form-control"  data-ng-required="true"/>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label col-sm-3" data-translate="">ตำแหน่ง</label>
+              <div class="col-sm-9">
+                <input type="text" id="POSITION" name="position" class="form-control"  data-ng-required="true"/>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label col-sm-3" data-translate="">แผนก</label>
+              <div class="col-sm-9">
+                <input type="text" id="DEPARTMENT" name="department" class="form-control"  data-ng-required="true"/>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label col-sm-3" data-translate="">เบอร์โทรศัพท์</label>
+              <div class="col-sm-9">
+                <input type="text" id="TEL" name="tel" class="form-control"  data-ng-required="true"/>
+              </div>
+            </div>
+             <div class="form-group">
+              <label class="control-label col-sm-3" data-translate="">อีเมล</label>
+              <div class="col-sm-9">
+                <input type="text" id="EMAIL" name="email" class="form-control"  data-ng-required="true"/>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label col-sm-3" data-translate="">องค์กร</label>
+              <div class="col-sm-9">
+                <input type="text" id="ORGANISATION" name="organisation" class="form-control"  data-ng-required="true"/>
+              </div>
+            </div>
+            <fieldset>
+              <legend data-translate="">ที่อยู่องค์กร</legend>
+          
+              <div class="form-group">
+                <label class="control-label col-sm-3" data-translate="">ที่อยู่</label>
+                <div class="col-sm-9">
+                  <input type="text" id="ORGANISATIONADDR" name="address" class="form-control" />
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="control-label col-sm-3" data-translate="">เบอร์โทรศัพท์</label>
+                <div class="col-sm-9">
+                  <input type="text" id="ORGANISATIONTEL" name="orgTel" class="form-control" />
+                </div>
+              </div>
+               <div class="form-group">
+                <label class="control-label col-sm-3" data-translate="">อื่นๆ</label>
+                <div class="col-sm-9">
+                  <input type="text" id="OTHERDETAIL" name="other" class="form-control" />
+                </div>
+              </div>
+              
+            </fieldset>
+          </fieldset>
+        </form>
+    	  
+    	 </div>
+    	    <div id="reg_messageBox" class="error">
+					<label id="reg_lblMessage"></label>
+			</div>
+			<div class="modal-footer">
+				<button id="btnCancel" type="button" class="btn"
+					data-dismiss="modal">
+					&nbsp; <span data-translate="">เริ่มใหม่</span>
+				</button>
+				<button id="btnRegister" type="button" class="btn btn-primary">
+					&nbsp; <span data-translate="">ลงทะเบียน</span>
+				</button>
+			</div>
+		</div>
+ </div>
+</div>
+
+<script type="text/javascript">
+ 
+$(document).ready(function() {
+	
+	function showMessage(message)
+	{
+		$("#reg_messageBox").removeClass("success").addClass("error"); 
+		$("#reg_messageBox").show(500); 
+		$("#reg_lblMessage").text(message); 
+	}
+	
+	function clearScreen() 
+	{
+		$("#NAME").val(""); 
+		$("#SURNAME").val(""); 
+		$("#POSITION").val("");   
+		$("#DEPARTMENT").val(""); 
+		$("#TEL").val("");    
+		$("#EMAIL").val(""); 
+		$("#ORGANISATION").val(""); 
+		$("#ORGANISATIONADDR").val(""); 
+		$("#ORGANISATIONTEL").val("");   
+		$("#OTHERDETAIL").val("");
+		$("#reg_messageBox").hide(); 
+	}
+	
+	function register()
+	{  
+		$.ajax({
+            type: "GET",
+            url: "http://172.27.204.30:8080/diverservice/rest/Register/registerUser",
+            data: {strNAME: $( "#NAME" ).val(),
+            	   strSURNAME: $("#SURNAME").val(), 
+            	   strPOSITION: $("#POSITION").val(),
+            	   strDEPARTMENT: $("#DEPARTMENT").val(),
+            	   strTEL: $("#TEL").val(),
+            	   strEMAIL: $("#EMAIL").val(),
+            	   strORGANISATION: $("#ORGANISATION").val(),
+            	   strORGANISATIONADDR: $("#ORGANISATIONADDR").val(),
+            	   strORGANISATIONTEL: $("#ORGANISATIONTEL").val(),
+            	   strOTHERDETAIL: $("#OTHERDETAIL").val()}, 
+            contentType: "application/json; charset=utf-8",
+            crossDomain: true,
+            dataType: "json",
+            success: function (data, status, jqXHR) {
+				console.log("success",data,status,jqXHR);
+				if (data.RESULT_STATUS != "-1")
+				{
+					clearScreen();
+					$("#reg_messageBox").removeClass("error").addClass("success"); 
+					$("#reg_messageBox").show(500); 
+					$("#reg_lblMessage").text("ระบบได้ส่งข้อมูลการร้องขอเพื่อลงทะเบียนเข้าใช้งานเรียบร้อยแล้ว"); 
+				}
+				else
+				{
+					showMessage("ร้องขอเพื่อลงทะเบียนเข้าใช้งานไม่สำเร็จ กรุณาลองใหม่อีกครั้ง");
+				}							 
+            },
+            error: function (jqXHR, status) {	       
+                console.log("error",status,jqXHR);  
+                showMessage("ร้องขอเพื่อลงทะเบียนเข้าใช้งานไม่สำเร็จ กรุณาลองใหม่อีกครั้ง");
+            }
+         }); 
+	}
+	
+	$( "#btnRegister" ).click(function() {
+		  
+		  var strNAME = $( "#NAME" ).val();
+		  var strSURNAME = $( "#SURNAME" ).val();   
+		  var strPOSITION = $( "#POSITION" ).val();   
+		  var strDEPARTMENT = $( "#DEPARTMENT" ).val();   
+		  var strTEL = $( "#TEL" ).val();   
+		  var strEMAIL = $( "#EMAIL" ).val();   
+		  var strORGANISATION = $( "#ORGANISATION" ).val();   
+		  var strORGANISATIONADDR = $( "#ORGANISATIONADDR" ).val();   
+		  var strORGANISATIONTEL = $( "#ORGANISATIONTEL" ).val();  
+		  var strOTHERDETAIL = $( "#OTHERDETAIL" ).val();
+		  
+		  var re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
+		  var is_email=re.test(strEMAIL);
+		  
+		  console.log("is_email",is_email);
+			
+		  if (strNAME == "")
+		  {
+			  showMessage("กรุณากรอกชื่อ");
+		  }
+		  else if(strSURNAME == "")
+		  {
+			  showMessage("กรุณากรอกนามสุกล");
+		  }
+		  else if(strPOSITION == "")
+		  {
+			  showMessage("กรุณากรอกตำแหน่ง");
+		  }
+		  else if(strDEPARTMENT == "")
+		  {
+			  showMessage("กรุณากรอกส่วนงาน");
+		  }
+		  else if(strTEL == "")
+		  {
+			  showMessage("กรุณากรอกเบอร์โทรศัพท์");
+		  }
+		  else if(strEMAIL == "")
+		  {
+			  showMessage("กรุณากรอกอีเมล");
+		  }
+		  else if(is_email == false)
+		  {
+			  showMessage("อีเมลไม่ถูกต้อง ตัวอย่าง  paiboon@gmail.com");
+		  }
+		  else if(strORGANISATION == "")
+		  {
+			  showMessage("กรุณากรอกหน่วยงาน");
+		  }
+		  else if(strORGANISATIONADDR == "")
+		  {
+			  showMessage("กรุณากรอกที่อยู่หน่วยงาน");
+		  }
+		  else if(strORGANISATIONTEL == "")
+		  {
+			  showMessage("กรุณากรอกเบอร์โทรศัพท์หน่วยงาน");
+		  }
+		  else
+		  {
+			   register();
+		  }  
+ 	});
+	
+	 $("#btnCancel").click(function(){
+		  clearScreen();
+	 });
+	
+});
+	
+</script>
+

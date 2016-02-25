@@ -1,7 +1,247 @@
+<style>
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+  position: relative;
+  min-height: 100%;
+}
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 60px;
+}
+
+@font-face {
+  	font-family:"thsunarabunnew";
+    src: url("../../catalog/views/default/fonts/thsarabunnew.otf");
+	src: url("../../catalog/views/default/fonts/fonts/thsarabunnew.woff");
+}
+
+body{
+    color: #464646;
+    font-family: "thsunarabunnew";
+ 
+}
+
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 60px;
+  background-color: #f5f5f5;
+}
+
+
+/* Custom page CSS
+-------------------------------------------------- */
+/* Not required for template or sticky footer method. */
+
+body > .container {
+  padding: 60px 15px 0;
+}
+.container .text-muted {
+  margin: 20px 0;
+}
+
+.footer > .container {
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+code {
+  font-size: 80%;
+}
+
+#mark{
+    padding-top: 13px;
+}
+
+.select-lang{
+    margin-top:7px;
+    width: 160px;
+    margin-left: 18px;
+}
+
+a {
+    color: #8a898a;
+}
+
+li.active > a{
+    color: #ef9b00;
+    font-weight: bold;
+}
+
+#navbar{
+    margin-bottom: 0px;
+    padding-left: 0px;
+	border: 0px;
+}
+
+#nav_right{
+    margin-right: 2px;
+    margin-top: -36px;
+    margin-bottom: 0px;
+}
+
+.login-space{
+    margin-right: 10px;
+}
+
+#footer{
+	background-color: #555555;
+	padding-left: 15px;
+	
+}
+
+.white{
+	color: #ffffff;s
+}
+
+.text-foot{
+	padding-top: 20px;
+}
+</style>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+<body>
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-73630913-1', 'auto');
+    ga('send', 'pageview');
+
+ </script>
+
+
+ <div class="container-fluid"> 
+        <div> 
+            
+            <img src="../../catalog/views/default/images/Logo.png" class="img-responsive">
+        
+        </div> 
+            <p class="navbar-text navbar-right" id="nav_right">
+                <span data-ng-show="authenticated">
+                    <a href="admin.console#/organization/users?userOrGroup={{user.username}}"
+                        title="{{'userDetails' | translate}}"
+                        class="hidden-xs btn btn-link">
+                       <img class="img-circle"
+                            data-ng-src="http://gravatar.com/avatar/{{user.email | md5}}?s=18"/>
+                       {{user.name}} {{user.surname}} ({{user.profile | translate}})
+                       <span class="alert alert-danger ng-hide" data-ng-show="session.remainingTime > 0 &&
+                                           session.remainingTime < session.alertInTitleWhen"
+                               data-translate="" data-translate-values="{remainingTime: '{{session.remainingTime}}'}">
+                         sessionWillExpireIn
+                       </span>
+                     </a>
+                </span>
+                <span data-ng-show="authenticated">
+                    <a href="../../j_spring_security_logout"
+                       title="{{'signout' | translate}}">
+                      <i class="fa fa-sign-out"></i>&nbsp;
+                      {{'signout' | translate}}
+                    </a>
+                </span>
+                 <span data-ng-show="!authenticated && service !== 'catalog.signin'">
+                    <a href="{{pages.signin}}"
+                       title="{{'signIn'|translate}}"
+                       data-ng-keypress="$event">
+                       <i class="fa fa-sign-in"/>&nbsp;
+                       {{'signIn' | translate}}
+                    </a>
+                  </span>
+               
+            </p> 
+            
+        
+      </div>
+      <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+          <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+              <div class="row">
+                    <div class="col-md-12 text-right">
+                        <button type="button" class="close close-pad" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                    </div>
+              </div>
+              <div class="row">
+                    <div class="col-md-12 text-center">
+                       <h2 class="modal-co">เข้าสู่ระบบ</h2>
+                    </div>  
+              </div>    
+              <div class="row">
+                    <div class="col-md-10 col-md-offset-1 text-center">
+                        <input type="text" class="form-control" placeholder="ชื่อผู้ใช้">
+                    </div>  
+              </div>
+              <div class="row modal-space">
+                    <div class="col-md-10 col-md-offset-1 text-center">
+                        <input type="text" class="form-control " placeholder="รหัสผ่าน">
+                    </div>  
+              </div> 
+              <div class="row">
+                    <div class="col-md-10 col-md-offset-1 modal-link">
+                        <a href="#">ลืมรหัสผ่าน</a>
+                    </div>  
+              </div>
+              <div class="row">
+                    <div class="col-md-8 col-md-offset-2 ">
+                        <button type="button" class="btn orange-bg border-norad form-control btn-modal" >เข้าสู่ระบบ</button>
+                    </div>  
+              </div> 
+            </div>
+          </div>
+      </div>
+
+
+<div data-gn-alert-manager=""></div>
+  <!-- Fixed navbar -->
+    <nav class="navbar" id="navbar" >
+      <div class="container-fluid headbg " >
+	  
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            </button>
+        </div>
+        
+        <div id="navbar" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav navbar-right" >
+            <li class="active"><a href="#">{{info.site.name}}</a></li>
+            <li><a data-gn-active-tb-item="catalog.search#/search"  title="{{'search' | translate}}"  ><span class="visible-lg" data-translate="">ค้นหา</span></a></li>
+            <li><a data-gn-active-tb-item="catalog.search#/map" title="{{'map' | translate}}" ><span class="visible-lg" >แผนที่</span></a></li>
+            <li id="mark">|</li>
+            <li><a data-gn-active-tb-item="catalog.search#/register"  title="{{'register' | translate}}" ><span class="visible-lg" data-translate="">ลงทะเบียน</span></a></li>
+            <li ><a data-gn-active-tb-item="catalog.search#/links" title="{{'Links' | translate}}" > <span class="visible-lg" data-translate="" >ลิงก์</span></a></li>
+            <li><a data-gn-active-tb-item="catalog.search#/help"  title="{{'Help' | translate}}"  > <span class="visible-lg" data-translate="">ช่วยเหลือ</span></a></li>
+            <li><a data-gn-active-tb-item="catalog.search#/about" title="{{'About' | translate}}" ><span class="visible-lg" data-translate="">เกี่ยวกับ</span></a></li> 
+            <li><a data-gn-active-tb-item="catalog.search#/contactus" title="{{'Contact Us' | translate}}" ><span class="visible-lg" data-translate="">ติดต่อ</span></a></li>
+<!--            <li>
+                 <form class="navbar-form navbar-right" role="language">
+                        <div class="form-group pull-right"
+                             data-gn-language-switcher="lang"
+                             data-langs="langs"
+                             data-lang-labels="langLabels"/>
+                      </form>
+              </li>-->
+          </ul>
+        </div><!--/.nav-collapse -->
+        
+      </div>
+    </nav>
+
+
+<!--
 <div class="navbar navbar-default gn-top-bar" role="navigation"
      data-ng-include="'../../catalog/templates/top-toolbar.html'"
      xmlns="http://www.w3.org/1999/html">
-</div>
+</div>-->
 
 <div data-gn-alert-manager=""></div>
 
@@ -19,18 +259,38 @@
     <div data-ng-if="isMapViewerEnabled" 
          data-ng-include="'../../catalog/views/default/templates/map.html'"
          data-ng-show="activeTab == '/map'"/>
+    <div data-ng-if="isMapViewerEnabled" 
+         data-ng-include="'../../catalog/views/default/templates/contactus.html'"
+         data-ng-show="activeTab == '/contactus'"/>
+    <div data-ng-if="isMapViewerEnabled" 
+         data-ng-include="'../../catalog/views/default/templates/register.html'"
+         data-ng-show="activeTab == '/register'"/>
     <div data-ng-include="'../../catalog/views/default/templates/recordView.html'"
          data-ng-show="activeTab == '/metadata'"/>
+    <div data-ng-include="'../../catalog/views/default/templates/help.html'"
+         data-ng-show="activeTab == '/help'"/>
+    <div data-ng-include="'../../catalog/views/default/templates/links.html'"
+         data-ng-show="activeTab == '/links'"/>
+    <div data-ng-include="'../../catalog/views/default/templates/about.html'"
+         data-ng-show="activeTab == '/about'"/>
   </div>
 </div>
 
+<div class="clearfix"></div>
+    <br><br>
 
-<div class="navbar navbar-default gn-bottom-bar">
+ <footer class="footer" id="footer">
+         <div class="container-fluid">
+            <p class="white">Copyright © 2016 GISTDA. All rights reserved.</p>
+        </div>
+    </footer>
+    
+<!--<div class="navbar navbar-default gn-bottom-bar">
   <ul class="nav navbar-nav">
     <li><a href="http://geonetwork-opensource.org/">
       <i class="fa fa-fw"></i>
-      <span data-translate="">about</span></a>
-    </li>
+      <span data-translate="">about</span>
+    </a></li>
     <li class="hidden-sm"><a href="https://github.com/geonetwork/core-geonetwork">
       <i class="fa fa-github"></i>
       <span data-translate="">github</span></a></li>
@@ -39,16 +299,6 @@
          data-translate-values="{platform: '{{info.site.platform.name}}', version: '{{info.site.platform.version}}', subversion: '{{info.site.platform.subVersion}}'}">
         versionDetails</a>
     </li>
-    <li class="socialmedia-text" ng-hide="showSocialMediaLink">
-      <span data-translate="">shareOn</span>
-    </li>
-    <li class="socialmedia" ng-hide="showSocialMediaLink">
-      <a href="https://www.facebook.com/sharer.php?u={{socialMediaLink | encodeURIComponent}}" target="_blank" title="Facebook"><i class="fa fa-facebook"></i></a>
-      <a href="https://twitter.com/share?url={{socialMediaLink | encodeURIComponent}}" target="_blank" title="Twitter"><i class="fa fa-twitter"></i></a>
-      <a href="http://www.linkedin.com/shareArticle?mini=true&amp;url={{socialMediaLink | encodeURIComponent}}" target="_blank" title="LinkedIn"><i class="fa fa-linkedin"></i></a>
-      <a href="https://plus.google.com/share?url={{socialMediaLink | encodeURIComponent}}" target="_blank" title="Google+"><i class="fa fa-google-plus"></i></a>
-      <a href="mailto:?subject={{info.site.name}}&amp;body={{socialMediaLink | encodeURIComponent}}" target="_blank" title="Email"><i class="fa fa-envelope-o"></i></a>
-    </li>
     <li>
       <a href="rss.search?sortBy=changeDate&georss=simplepoint"
               title="{{'lastRecords' | translate}}">
@@ -56,4 +306,6 @@
       </a>
     </li>
   </ul>
-</div>
+</div>-->
+</body>
+

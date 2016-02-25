@@ -12,6 +12,9 @@
       <span class="icon-bar"></span>
     </button>
   </div>
+  <div>
+	 <h3><span class="visible-lg" data-translate="">systemName</span></h3> 
+  </div>
   <div id="navbar" class="navbar-collapse collapse">
     <ul class="nav navbar-nav">
       <li>
@@ -33,18 +36,17 @@
            title="{{'map' | translate}}">
           <i class="fa fa-globe"></i>
           <span class="visible-lg" data-translate="">makeYourMap</span>
-
           <span data-gnv-layer-indicator=""/>
         </a>
       </li>
-      <li data-ng-show="authenticated && user.isEditorOrMore()">
+      <li data-ng-show="authenticated">
         <a data-gn-active-tb-item="catalog.edit"
            title="{{'editorBoard' | translate}}">
           <i class="fa fa-plus"></i>
           <span class="visible-lg" data-translate="">contribute</span>
         </a>
       </li>
-      <li class="dropdown" data-ng-show="authenticated && user.isEditorOrMore()">
+      <li class="dropdown" data-ng-show="authenticated">
         <a href="" class="dropdown-toggle" data-toggle="dropdown"
            role="button" aria-expanded="false"><span class="caret"></span></a>
         <ul class="dropdown-menu" role="menu">
@@ -73,30 +75,91 @@
           <span class="visible-lg" data-translate="">adminConsole</span>
         </a>
       </li>
+      <li>
+        <a data-gn-active-tb-item="catalog.search#/register"
+           title="{{'register' | translate}}">
+          <i class="fa fa-pencil-square-o"></i>
+          <span class="visible-lg" data-translate="">Register</span>
+        </a>
+      </li> 
+       <li>
+        <a data-gn-active-tb-item="catalog.search#/contactus"
+           title="{{'Contact Us' | translate}}">
+          <i class="fa fa-envelope-o"></i>
+          <span class="visible-lg" data-translate="">Contact Us</span>
+        </a>
+      </li>
+      <li>
+        <a data-gn-active-tb-item="catalog.search#/links"
+           title="{{'Links' | translate}}">
+           <i class="fa fa-external-link"></i>
+          <span class="visible-lg" data-translate="">Links</span>
+        </a>
+      </li> 
+       <li>
+        <a data-gn-active-tb-item="catalog.search#/help"
+           title="{{'Help' | translate}}">
+           <i class="fa fa-book"></i>
+          <span class="visible-lg" data-translate="">Help</span>
+        </a>
+      </li>
+      <li>
+        <a data-gn-active-tb-item="catalog.search#/about"
+           title="{{'About' | translate}}">
+         <i class="fa fa-info"></i> 
+          <span class="visible-lg" data-translate="">About</span>
+        </a>
+      </li>  
     </ul>
 
 
-    <form class="navbar-form navbar-right" role="language">
+   <form class="navbar-form navbar-right" role="language">
       <div class="form-group pull-right"
            data-gn-language-switcher="lang"
            data-langs="langs"
            data-lang-labels="langLabels"/>
     </form>
+   <!--  <form class="navbar-form navbar-right" role="language">
+    <div style="padding-top: 5px;">
+        <select data-ng-model="lang" style="color:Green; 
+    border: 1px solid #848484; 
+    -webkit-border-radius: 0px; 
+    -moz-border-radius: 30px; 
+    border-radius: 5px; 
+    outline:0;   
+    padding-left:10px; 
+    padding-right:10px; 
+	text-align:left;
+	vertical-align: middle;
+	  display: inline-block;
+  padding-top: 2px;
+  margin-bottom: 0;"  >
+        <option value="dut" label="Nederlands">Nederlands</option>
+        <option value="eng" label="English">English</option>
+        <option value="fre" label="Français">Français</option>
+        <option value="ger" label="Deutsch">Deutsch</option>
+        <option value="kor" label="한국의">한국의</option>
+        <option value="spa" label="Español">Español11</option>
+        <option value="th" label="Thailand" selected="selected">ไทย</option>
+    </select>
+    <div class="form-group pull-right" data-gn-language-switcher="lang" data-langs="langs"
+        data-lang-labels="langLabels" style="visibility: collapse" />
+    </div>
+
+    </form> -->
+
 
     <ul class="nav navbar-nav navbar-right">
       <li data-ng-show="authenticated">
         <a href="admin.console#/organization/users?userOrGroup={{user.username}}"
            title="{{'userDetails' | translate}}"
-           data-ng-disabled="!user.isUserAdminOrMore()"
            class="hidden-xs btn btn-link">
           <img class="img-circle"
                data-ng-src="http://gravatar.com/avatar/{{user.email | md5}}?s=18"/>
           {{user.name}} {{user.surname}} ({{user.profile | translate}})
-          <span class="alert alert-danger ng-hide"
-                data-ng-show="session.remainingTime > 0 &&
-                    session.remainingTime < session.alertInTitleWhen"
-                data-translate=""
-                data-translate-values="{remainingTime: '{{session.remainingTime}}'}">
+          <span class="alert alert-danger ng-hide" data-ng-show="session.remainingTime > 0 &&
+                              session.remainingTime < session.alertInTitleWhen"
+                  data-translate="" data-translate-values="{remainingTime: '{{session.remainingTime}}'}">
             sessionWillExpireIn
           </span>
         </a>

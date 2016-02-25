@@ -43,6 +43,28 @@
                   data-ng-class="labelImportanceClass(type)"
                   data-ng-if="type.total !== '?'">{{type.success}} / {{type.total}}</span>
           </div>
+            <div class="col-md-12" data-ng-if="type.total !== '?'">
+                <div class="progress">
+                    <div class="progress-bar progress-bar-danger" 
+                         role="progressbar" 
+                         aria-valuenow="{{type.success}}" 
+                         aria-valuemin="0" 
+                         aria-valuemax="{{type.total}}" 
+                         style="width:{{type.success/type.total*100|number:2}}%"
+                         ng-if="type.success!=type.total">
+                        {{type.success/type.total*100|number:2}}%
+                    </div>
+                    <div class="progress-bar progress-bar-success" 
+                         role="progressbar" 
+                         aria-valuenow="{{type.success}}" 
+                         aria-valuemin="0" 
+                         aria-valuemax="{{type.total}}" 
+                         style="width:{{type.success/type.total*100|number:2}}%"
+                         ng-if="type.success==type.total">
+                        100.00%
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="list-group" data-ng-repeat="pattern in type.patterns">
           <li class="list-group-item" data-ng-repeat="rule in pattern.rules"

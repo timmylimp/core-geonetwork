@@ -1,0 +1,66 @@
+<div class="row">
+
+<!--  users report -->
+<div class="col-lg-7">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <strong>ข้อมูล WMS</strong>
+
+
+      <div class="btn-toolbar">
+        <button type="button" class="btn btn-primary pull-right"
+                data-ng-disabled="!gnWmsReport.$valid && !gnWmsReport.dirty"
+                data-ng-click="createReport('#gn-wms-report', 'http://www.google.co.th')"
+                ><span class="fa fa-save"></span> {{"createReport"|translate}}
+        </button>
+      </div>
+    </div>
+    <div class="panel-body">
+
+      <form id="gn-wms-report" name="gnWmsReport" class="form-horizontal">
+        <fieldset>
+
+          <div
+            class="form-group">
+
+            <label class="control-label col-sm-3" data-translate=""></label>
+            <div class="col-sm-9">
+            <select id="suggestedDate" class="form-control" data-ng-model="report.suggestedDate">
+              <option value="" data-translate="">reportDateSelect</option>
+              <option value="currentMonth" data-translate="">reportDateCurrentMonth</option>
+              <option value="previousMonth" data-translate="">reportDatePreviousMonth</option>
+              <option value="currentYear" data-translate="">reportDateCurrentYear</option>
+              <option value="previousYear" data-translate="">reportDatePreviousYear</option>
+            </select>
+            </div>
+          </div>
+
+          <div
+            data-ng-class="gnWmsReport.dateFrom.$error.required ? 'has-error' : ''" class="form-group">
+
+            <label class="control-label col-sm-3" data-translate="">reportUsers-userLoginDateBegin</label>
+            <div class="col-sm-9">
+              <input type="date" name="dateFrom" class="form-control" data-ng-model="report.dateFrom"
+                     data-ng-required="true"
+                     value="{{ date | date: 'yyyy-MM-dd' }}" />
+            </div>
+          </div>
+
+          <div
+            data-ng-class="gnWmsReport.dateTo.$error.required ? 'has-error' : ''" class="form-group">
+
+            <label class="control-label col-sm-3" data-translate="">reportUsers-userLoginDateEnd</label>
+            <div class="col-sm-9">
+              <input type="date" name="dateTo" class="form-control" data-ng-model="report.dateTo"
+                     data-ng-required="true"
+                     value="{{ date | date: 'yyyy-MM-dd' }}" />
+            </div>
+          </div>
+
+        </fieldset>
+      </form>
+
+    </div>
+  </div>
+</div>
+</div>

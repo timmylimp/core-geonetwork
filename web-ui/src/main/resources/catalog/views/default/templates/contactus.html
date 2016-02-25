@@ -1,0 +1,597 @@
+﻿ <style>
+		.success, .error{
+		margin: 10px 0px;
+		padding:10px;
+		}
+		.success {
+		    color: #4F8A10;
+		    background-color: #DFF2BF;
+		    display:none;
+		}
+		.error {
+		    color: #D8000C;
+		    background-color: #FEEFB3;
+		    display: none;
+		}
+		
+@font-face {
+font-family:"supermarket";
+src: url("/fonts/supermarket.otf");
+src: url("/fonts/supermarket.woff");
+}
+
+@font-face {
+  	font-family:"thsunarabunnew";
+    src: url("/fonts/thsarabunnew.otf");
+	src: url("/fonts/thsarabunnew.woff");
+}
+
+body{
+    color: #464646;
+    font-family: "thsunarabunnew";
+}
+
+.supermarket{
+	font-family:"supermarket";
+}
+h3{
+	color:#6c6c6c;
+	font-weight: bold;
+}
+a:hover {
+    text-decoration: none;
+}
+.thsunarabunnew{
+	font-family:"thsunarabunnew";
+	font-size:24px;
+}
+.imgpin{
+	position:relative;
+	text-align:center;
+	margin-top:31px;
+}
+.boxright{
+	position:relative;
+	border-color:#eeeeee;
+	border-style: solid;
+    border-width: 1px 1px 1px 1px;
+	min-height:639px;
+	float:left;
+	margin-bottom:2%;
+	overflow:auto;
+	width:100%;
+}
+.boxtop{
+	position:relative;
+	width:100%;
+	border-style: solid;
+	border-bottom-color:#eeeeee;
+	border-width: 0px 0px 1px 0px;
+	
+}
+.tb10 {
+	background-image:url(../../images/form_bg.jpg);
+	background-repeat:repeat-x;
+	border:1px solid #d1c7ac;
+	border-radius:5px;
+	width:100%;
+	height:34px;
+	color:#333333;
+	padding:3px;
+	margin-right:4px;
+	margin-bottom:8px;
+	font-family:tahoma, arial, sans-serif;
+	margin-bottom:25px;
+}
+.tb11 {
+	background-image:url(../../images/form_bg.jpg);
+	background-repeat:repeat-x;
+	border:1px solid #d1c7ac;
+	border-radius:5px;
+	color:#333333;
+	padding:3px;
+	margin-right:4px;
+	margin-bottom:8px;
+	font-family:tahoma, arial, sans-serif;
+	margin-bottom:25px;
+	width:100%;
+}
+.btreset{
+	background-color:#f0ad4e;
+	border-color:#f0ad4e;
+	color:white;
+	border-radius:5px;
+	border-width: 1px 1px 1px 1px;
+	width: 103px;
+	height: 36px;
+	float:left;
+}
+.btsend{
+	background-color:#337ab7;
+	border-color:#337ab7;
+	color:white;
+	border-radius:5px;
+	border-width: 1px 1px 1px 1px;
+	width: 103px;
+	height: 36px;
+	float:left;
+	margin-left:3px;
+}
+.boxcenter{
+	position:relative;
+	min-width:1000px;
+	border-color:#eeeeee;
+	border-style: solid;
+    border-width: 1px 1px 1px 1px;
+	min-height:639px;
+	margin-left:10%;
+	float:left;
+	margin-bottom:2%;	
+}
+.boxlinks{
+	position:relative;
+	overflow: auto;
+	margin-top:2%;
+}
+.b_header{
+	position:relative;
+	width:100%;
+	background-color:#d8ecf6;
+	border-color:#d8ecf6;
+	border-style: solid;
+    border-width: 1px 1px 1px 1px;
+}
+.b_content{
+	position:relative;
+	width:100%;
+	border-color:#d8ecf6;
+	border-style: solid;
+    border-width: 1px 1px 1px 1px;
+}
+/*ul{
+    list-style: none;
+    position: relative;
+    padding: 0;
+    margin: 0;
+}
+li:before{
+	color:#3e8bcf;
+	list-style:square; 
+	 position: absolute;
+    content: "•";
+    left: 0;
+}*/
+.circle{
+    list-style: none;
+    padding:0;
+    margin:0;
+	font-family:"supermarket";
+	color:#4e5153;
+	font-size:23px;
+}
+.circle li { 
+    padding-left: 4%; 
+    text-indent: -1%;
+	margin-bottom:1%;
+	
+}
+.circle li:before {
+    content: "• ";
+    color:#3e8bcf;
+	font-size:28px;	
+}
+.square{
+    list-style: none;
+    margin:0;
+	padding-bottom: 2%;
+    padding-top: 1%;
+	padding-left:0px;
+}
+
+.square li { 
+    padding-left: 4%; 
+    text-indent: -1%;
+	
+}
+.square li:before {
+    content: "■ ";
+    color:#3e8bcf;
+	font-size:20px;	
+}
+.text_indent{
+	text-indent:4%;
+}
+.font_header{
+	color:#307292;
+	font-size:23px;
+	font-family:"supermarket";
+}
+.t_center{
+	text-align:center;
+}
+.boxleft{
+	position:relative;
+	width:236px;
+	border-color:#eeeeee;
+	border-style: solid;
+    border-width: 1px 1px 1px 1px;
+	min-height:639px;
+	float:left;
+	margin-bottom:2%;
+	width:100%;
+}
+.b_tcontent{
+	position: relative;
+	margin-left:5%;
+	margin-right:5%;
+}
+@media (min-width: 599px){
+.b_company{
+	position:relative;
+	float:left;
+	margin-left:8%;
+	text-align: center;
+    width: 194px;
+	min-height: 242px;
+}
+/*.boxleft{
+	margin-left:14%;
+}*/
+/*.boxright{
+	width:1000px;
+}*/
+}
+@media (max-width: 1588px){
+.b_company{
+	position:relative;
+	float:left;
+	margin-left:8%;
+	text-align: center;
+    width: 194px;
+	min-height: 242px;
+}
+/*.boxright{
+	width:900px;
+}*/
+}
+@media (min-width: 1670px){
+.b_company{
+	position:relative;
+	float:left;
+	margin-left:10%;
+	text-align: center;
+    width: 194px;
+	min-height: 242px;
+}
+/*.boxleft{
+	margin-left:19%;
+}*/
+}
+
+.pagination > .active > span:focus{
+z-index:2;
+color:black!important; 
+background-color:#fff!important;
+border-color:#fff!important;
+cursor:default;}
+.icon_help{
+	color:#07b1dd; 
+	float:right;
+} 
+	.page-bottom{
+		margin-bottom:30px;
+	}
+
+	img.banner{
+		width: 100%;
+		margin-bottom: 20px;
+	}
+	
+	#content{
+		margin-left: 30px;
+		margin-right: 30px;
+		padding-left: 50px;
+		padding-right: 40px;
+	}
+
+	.text-justuify{
+		text-align: justify;
+	}
+	
+	input.contact, textarea.contact, button.contact{
+		margin-top: 20px;
+	}
+
+	div.contact{
+		padding-top: 20px;
+		
+	}
+	
+	img.contact{
+		width:7%;
+	}
+	
+	.orange-bg{
+		background-color: #ef9b00;
+		color: #fff;
+	}
+	
+	.reset-bg{
+		background: #cccccc;
+	}
+
+	.border-norad{
+		border-radius: 0px;
+	}
+	
+	.btn-modal{
+		padding-top: -1px;
+		margin-bottom: 20px;
+	}
+	
+	p.top{
+		margin-top: 15px;
+	}
+	
+	.fa-map-marker{
+		font-size: 22px;
+		color: #353535;
+	}
+	
+</style>
+
+	<div>
+			<img src="../../catalog/views/default/images/contact-banner.png" class="img-responsive banner">  
+	</div>
+	
+	
+	<!-- Begin page content -->
+  <div class="ng-scope" data-ng-controller="gnsDefault">
+  <div class="row gn-row-main">
+        <div id="content" class="page-bottom">
+            <br>
+          
+            <div class="row">
+                <div class="col-md-4 text-justify">
+                    <div class="col-md-12">
+                        <b>สำนักงานพัฒนาเทคโนโลยีอวกาศและภูมิสารสนเทศ (องค์การมหาชน)</b>
+                        
+                    </div>
+                    
+                    <div class="col-md-12 contact">
+                        
+                        <i class="fa fa-map-marker"></i> &nbsp; เลขที่ 120 หมู่ 3 อาคารรวม หน่วยราชการ (อาคารรัฐประศาสนภักดี) ชั้น 6 และชั้น 7 ถนนแจ้งวัฒนะ แขวงทุ่งสองห้อง เขตหลักสี่ กรุงเทพฯ ประเทศไทย 1021
+                    </div>
+                    
+                    <div class="col-md-12 contact">
+                        <img class="contact" src="../../catalog/views/default/images/call.png">&nbsp;  0-2143-0569
+                    </div>
+                    <div class="col-md-12 contact">
+                        <img class="contact" src="../../catalog/views/default/images/fax.png">&nbsp;  0-2143-9594
+                    </div>
+                    <div class="col-md-12 contact">
+                        <img class="contact" src="../../catalog/views/default/images/mail.png">&nbsp;&nbsp;<a href="#">thaisdi@gistda.or.th</a>
+                    </div>
+                   
+                    
+                </div>
+				
+				
+				
+                <div class="col-md-8 ">
+                    <div class="col-md-12 ">
+						<p data-translate="">Contact Name</p>
+                        <input type="text" id="txtName" name="name" class="form-control"  data-ng-required="true"/>
+                    </div>
+                    <div class="col-md-12">
+                        <p class="top" data-translate="">address</p>
+						<input type="text" id="txtAddress" name="address" class="form-control"  data-ng-required="true"/>
+                    </div>
+                    <div class="col-md-12">
+						<p class="top" data-translate="">Tel</p>
+						<input type="text" id="txtTel" name="tel" class="form-control"  data-ng-required="true"/>
+                    </div>
+					<div class="col-md-12">
+						<p class="top" data-translate="">email</p>
+						<input type="text" id="txtEmail" name="email" class="form-control"  data-ng-required="true"/>
+					</div>
+                    <div class="col-md-12">
+                        <p class="top" data-translate="">comments</p>
+						<textarea id="txtComments" name="comments" class="form-control"  rows="6" ></textarea>
+                    </div>
+					<div id="messageBox" class="error">
+						<label id="lblMessage"></label>
+					 </div>
+                    <div class="col-md-3 col-md-offset-6">
+                        <button id="btnSend" type="button" class="btn orange-bg border-norad form-control btn-modal contact"><i class="fa fa-paper-plane"></i>&nbsp;&nbsp;ส่ง</button>
+					</div>
+					<div class="col-md-3">
+						<button id="btnReset" type="button" class="btn reset-bg border-norad form-control btn-modal contact"><i class="fa fa-refresh"></i>&nbsp;&nbsp;รีเซ็ต</button>
+					</div>
+						
+                    
+                    
+                </div>    
+            </div>
+        </div>
+    </div>
+</div>
+	
+	
+	
+	
+	
+<!--
+  <div class="ng-scope" data-ng-controller="gnsDefault">
+  
+  <div class="row gn-row-main">
+	<div class="col-md-push-1 col-md-2 page_bottom">
+		<div class="boxleft">
+			<div class="imgpin"><img src="../../catalog/views/default/images/pin.png"style="margin-bottom:35px;"></div>
+			<p style="color:#307292;margin-left:10px;margin-right:10px;margin-bottom:39px;">
+				สำนักงานพัฒนาเทคโนโลยีอวกาศและภูมิสารสนเทศ (องค์การมหาชน)
+			</p>
+			<p style="color:#307292;margin-left:10px;margin-right:10px;margin-bottom:41px;">
+				 เลขที่ 120 หมู่ 3 อาคารรวม หน่วยราชการ (อาคารรัฐประศาสนภักดี) ชั้น 6 และชั้น 7 ถนนแจ้งวัฒนะ แขวงทุ่งสองห้อง เขตหลักสี่ กรุงเทพฯ ประเทศไทย 10210
+			</p>
+			<div style="margin-left:10px;margin-right:10px;margin-bottom:17px;">
+				<div style="color:#307292"><img src="../../catalog/views/default/images/mail.png"style="margin-right: 5px;"><a href="mailto:thaisdi@gistda.or.th">thaisdi@gistda.or.th</a></div>
+			</div>
+			<div style="margin-left:10px;margin-right:10px;margin-bottom:17px;">
+				<div style="color:#307292"><img src="../../catalog/views/default/images/call.png"style="margin-right: 5px;">0-2143-0569</div>
+			</div>
+			<div style="margin-left:10px;margin-right:10px;margin-bottom:17px;">
+				<div style="color:#307292"><img src="../../catalog/views/default/images/fax.png"style="margin-right: 5px;">0-2143-9594</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-push-1 col-md-7">
+		<div class="boxright">
+			<div class="boxtop"><h3 style="text-align:center;" data-translate="">Contact Us</h3></div>
+			<div class="b_tcontent">
+			 
+			 <div class="form-group">
+              <p style="margin-top:44px;" data-translate="">Contact Name</p>
+              <input type="text" id="txtName" name="name" class="form-control"  data-ng-required="true"/>   
+             </div>
+            <div class="form-group">
+              <p data-translate="">address</p>
+                <input type="text" id="txtAddress" name="address" class="form-control"  data-ng-required="true"/>
+            </div>
+            <div class="form-group">
+              <p data-translate="">Tel</p>
+                <input type="text" id="txtTel" name="tel" class="form-control"  data-ng-required="true"/>
+            </div>
+            <div class="form-group">
+              <p data-translate="">email</p>
+                <input type="text" id="txtEmail" name="email" class="form-control"  data-ng-required="true"/>
+            </div>
+             <div class="form-group">
+              <p data-translate="">comments</p>
+                <textarea id="txtComments" name="comments" class="form-control"  rows="6" ></textarea>
+            </div>
+            <div id="messageBox" class="error">
+				<label id="lblMessage"></label>
+			 </div>
+			<div class="form-group"> 
+				<button id="btnSend" type="button" class="btsend"style="margin-right:1%;"><img src="../../catalog/views/default/images/send.png"style="margin-right:6%;">Send</button>
+				<button id="btnReset" type="button" class="btreset"><img src="../../catalog/views/default/images/reset.png"style="margin-right:6%;">Reset</button>
+			</div>
+			</div>
+		</div>
+	</div>
+  </div>
+  </div>
+-->
+
+<script type="text/javascript">
+
+$(document).ready(function() {
+	
+	function showMessage(message)
+	{
+		$("#messageBox").removeClass("success").addClass("error"); 
+		$("#messageBox").show(500); 
+		$("#lblMessage").text(message); 
+	}
+	
+	function clearScreen() 
+	{
+		$("#txtName").val(""); 
+		$("#txtAddress").val(""); 
+		$("#txtTel").val("");   
+		$("#txtComments").val(""); 
+		$("#txtEmail").val("");    
+	}
+	
+	function senMail(){ 
+		
+		 showMessage("senMail...");
+
+        $.ajax({ 
+       	 type: 'GET',
+       	 contentType: 'application/json; charset=utf-8',
+            url: "http://172.27.204.30:8080/diverservice/rest/Mail/sendMailAdmin",
+            dataType: "json",
+            async: false,
+            data: { name: $('#txtName').val(),
+           	 email_from: $('#txtEmail').val(),
+                subject: "คุณ"+$('#txtName').val()+"-แจ้งจากระบบสืบค้นข้อมูลภูมิสารสนเทศ(National Geospatial Catalogue)",
+                address: $('#txtAddress').val(),
+                tel: $('#txtTel').val(),
+                comments: $('#txtComments').val() },
+            success: function(data, textStatus, jqXHR){
+           	
+          	 	$("#messageBox").removeClass("error").addClass("success"); 
+				$("#messageBox").show(500); 
+				$("#lblMessage").text("ส่งข้อความเรียบร้อยแล้ว"); 
+				clearScreen();
+            },
+            error: function(jqXHR, textStatus, errorThrown){        	 
+           	 if(textStatus=="parsererror")
+           	  {
+           		 $("#messageBox").removeClass("error").addClass("success"); 
+ 					 $("#messageBox").show(500); 
+ 					 $("#lblMessage").text("ส่งข้อความเรียบร้อยแล้ว"); 
+ 					 clearScreen();
+           	  }
+           	  else
+           	  {
+           		 showMessage("เกิดข้อผิดพลาด " + textStatus);
+           	  }
+            },
+            
+        });
+	}
+	
+	
+	$("#btnSend").click(function() {
+		
+		var strName =  $("#txtName").val();
+		var strAddress = $("#txtAddress").val(); 
+		var strEmail = $("#txtEmail").val(); 
+		var strTel = $("#txtTel").val(); 
+		var strComments = $("#txtComments").val(); 
+		
+		var re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
+		var is_email=re.test(strEmail);
+		 
+		   console.log("is_email",is_email);
+			
+		  if (strName == "")
+		  {
+			  showMessage("กรุณากรอกชื่อ");
+		  }
+		  else if(strAddress == "")
+		  {
+			  showMessage("กรุณากรอกที่อยู่");
+		  }
+		  else if(strTel == "")
+		  {
+			  showMessage("กรุณากรอกเบอร์โทรศัพท์");
+		  }
+		  else if(strEmail == "")
+		  {
+			  showMessage("กรุณากรอกอีเมล");
+		  }
+		  else if(is_email == false)
+		  {
+			  showMessage("อีเมลไม่ถูกต้อง ตัวอย่าง  paiboon@gmail.com");
+		  }
+		  else if(strComments == "")
+		  {
+			  showMessage("กรุณากรอกความคิดเห็น");
+		  }
+		  else
+		  {
+			  senMail();
+		  }  
+	 });
+	
+	 $("#btnReset").click(function(){
+		  clearScreen();
+	 });
+         
+});
+    
+</script>

@@ -1,139 +1,1442 @@
-<div class="container-fluid">
-  <div class="row gn-row-main">
-    <div class="col-sm-4 col-sm-push-8">
-      <div class="well well-md">
-        <h1 data-translate=""
-            data-translate-values="{orgName: '{{info.site.organization}}'}">welcomeTitle</h1>
+<style>
+    @font-face {
+        font-family: "thsunarabunnew";
+        src: url("../fonts/thsarabunnew.otf");
+        src: url("../fonts/thsarabunnew.woff");
+    }
 
-        <p data-translate="">welcomeText</p>
-      </div>
-    </div>
-    <div class="col-sm-8 col-sm-pull-4">
-      <h1 data-translate="">getstarted</h1>
-      <p data-translate=""
-         data-translate-values="{records: '{{searchInfo.count}}'}">searchOver</p>
+    body{
+        color: #464646;
+        font-family: "thsunarabunnew";
+    }
 
-      <div class="input-group gn-form-any">
-        <input type="text"
-               class="form-control input-lg"
-               autofocus=""
-               data-ng-model="homeAnyField"
-               data-ng-model-options="modelOptions"
-               placeholder="{{'anyPlaceHolder' | translate}}"
-               data-ng-keyup="$event.keyCode == 13 && goToSearch(homeAnyField)"
-               data-typeahead="address for address in getAnySuggestions($viewValue)"
-               data-typeahead-loading="anyLoading"
-               data-typeahead-min-length="1"/>
-        <span class="input-group-btn">
-          <a class="btn btn-primary btn-lg"
-                  type="button"
-                  data-ng-href="#/search?any={{homeAnyField}}">
-            <i class="fa fa-search"></i>
-          </a>
-        </span>
-      </div>
+    h2.modal-co{
+        color: #8a898a;
+    }
+    a {
+        color: #8a898a;
+    }
+
+    li.active > a{
+        color: #ef9b00;
+        font-weight: bold;
+    }
+
+    .select-lang{
+        margin-top:7px;
+
+        width: 160px;
+        margin-left: 18px;
+    }
+
+    input.form-control, textarea.form-control{
+
+    }
+
+    #mark{
+        padding-top:14px;
+    }
+
+    #mark_tab{
+        padding-top: 10px;
+    }
+    .search-box{
+        background-color: lightgray;
+        color: 555555;
+        width: 90%;
+        margin: 0 auto;
+        padding: 20px 30px;
+        border: 1px solid #dcdddc;
+        border-radius: 5px;
+        transform: translateY(70%);
+
+    }
+
+    .input-search{
+        margin-top: 15px;
+    }
+
+    .search-bg{
+        background-image: url("../../catalog/views/default/images/search.png");
+        background-repeat: no-repeat;
+        height: 460px;
+        background-size: cover;
+    }
+
+
+    #nopad{
+        padding: 0px;
+    }
+
+
+    .orange-bg{
+        background-color: #ef9b00;
+        color: #fff;
+    }
+
+    .dark-bg{
+        background-color: #353535;
+        color: #fff;
+        border: 1px solid #353535;
+    }
+
+    #footer{
+        background-color: #555555;
+        padding-top: 15px;
+        margin-top: 60px;
+
+    }
+
+    .bottom-space{
+        padding-bottom:  60px;
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+
+    .orange a{
+        color: #ef9b00;
+    }
+
+    .tabb{
+        color: black;
+    }
+    .orange a:hover{
+        color: white;
+        background-color: #555555 !important;
+        border-radius: 0px;
+    }
+
+    .white{
+        color: white;
+    }
+
+    #tab_pad{
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    #content{
+        margin-left: 30px;
+        margin-right: 30px;
+        padding-left: 50px;
+        padding-right: 40px;
+    }
+
+    #slide-pad{
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+    .nav-pills>li.active>a {
+        background-color: transparent;
+    }
+
+
+    .nav-pills>li.active>a, .nav-pills>li.active>a:focus, .nav-pills>li.active>a:hover {
+        color: #fff;
+        background-color: transparent;
+    }
+
+    .nav-pills>li>a {
+        border-radius: 0px;
+    }
+
+
+    .img-text{
+
+        font-weight: bold;
+    }
+
+    .orange-content{
+        padding-top: 30px;
+        padding-bottom: 5px;
+        padding-left: 0px;
+        padding-right: 0px;
+    }
+
+    .text-justuify{
+        text-align: justify;
+    }
+
+
+
+    .template{
+        height: 175px;
+        width: 148px;
+        /*height: 205px;
+        width: 205px;*/
+        background-color: #ffffff;
+        float: left;
+        border: 0px;
+        padding: 15px 15px;
+    }
+
+    .template:hover{
+        background-color: #555555;
+        color: #fff;
+    }
+    .gn-search-page .nav-pills {
+        margin-bottom: 0px;
+    }
+    .template:focus{
+        background-color: #555555;
+    }
+    .carousel-control.right,.carousel-control.left {
+        background-image: none;
+    }
+
+    .newstemplate{
+        height: 70px;
+        width: 260px;
+        background-color: #ffffff;
+        float: left;
+        border: 2px solid #dcdddc;
+        border-bottom: 4px solid #f0a924;
+        border-radius: 5px 5px 0px 0px;
+        padding: 15px 15px;
+        margin: 15px 15px;
+    }
+
+
+    .newstemplate:hover{
+        background-color: #555555;
+        color: #fff;
+    }
+
+    .newstemplate:focus{
+        background-color: #555555;
+    }
+
+    img.displayed{
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    img.size{
+        width: 70%;
+        height: auto;
+    }
+
+    img.sat{
+        width: 70%;
+    }
+
+    img.icon{
+        width: 40%;
+    }
+
+    img.water{
+        width: 30%;
+    }
+
+    img.size, img.sat, img.icon, img.water{
+        padding-top: 10px;
+    }
+
+    img.arrow{
+        padding-top: 30%;
+    }
+
+    img.space{
+        width: 100%;
+    }
+
+    p.icon{
+        margin-top: 30px;    
+    }
+
+    p.sat{
+        margin-top: 20px;
+    }
+
+    p.cam{
+        margin-top: 5px;
+    }
+
+    img.bound{
+        padding-top: 30px;
+    }
+
+
+    #navbar{
+        margin-bottom: 0px;
+        padding-left: 0px;
+        border: 0px;
+    }
+
+    hr{
+        border-top: 2px solid #ef9b00;
+        /*margin-top: 190px;*/
+    }
+
+    .tab-news{
+        padding-left: 0px;
+        background: #f0f0f0;
+        margin-top:3px;
+        padding-top: 15px;
+        height:322px;
+    }
+
+    .tab-news-left{
+        padding-right: 0px;
+    }
+
+    .border-norad{
+        border-radius: 0px;
+    }
+
+    .tabs-left>li.active>a, .tabs-left>li.active>a:hover, .tabs-left>li.active>a:focus {
+        background-color: #555555;
+        color: white;
+        border-radius: 0px;
+    }
+
+    .nav-tabs>li>a{
+        border-bottom: 1px solid #dcdddc;
+        border-radius: 0px !important;
+    }
+
+    .intab-content{
+        padding: 20px 20px;
+    }
+
+    #nav_right{
+        margin-right: 2px;
+        margin-top: -36px;
+    }
+
+    .login-space{
+        margin-right: 10px;
+    }
+
+    .more{
+        width: 134px;
+        margin-top: 10px;
+
+    }
+
+    .news-arrow{
+        position: absolute;
+        top: 40%;
+    }
+
+    .news-arrowl{
+        padding-left: 47px;
+    }
+    .height300{
+        min-height: 300px;
+    }
+
+    .intro{
+
+        padding-left: 30px;
+    }
+
+    .glyphicon{
+
+    }
+
+    .organisation{
+        padding-top: 45px;
+    }
+
+    .tab-c a{
+        color: #353535;
+    }
+
+    p.orange-content{
+        padding-top: 15px;
+    }
+
+    .close-pad{
+        margin-right: 10px;
+    }
+
+    .modal-content{
+        padding: 15px 15px;
+    }
+
+    .modal-space{
+        padding-top: 10px;
+    }
+
+    .modal-link{
+        padding-top: 20px;
+        padding-bottom: 15px;
+    }
+
+    .btn-modal{
+
+        padding-top: 0px;
+        margin-bottom: 20px;
+    }
+
+    img.banner{
+        width: 100%;
+    }
+
+    img.logolink{
+        width: 38%;
+    }
+
+    p.link{
+        padding-top:10px;
+    }
+
+    .box-left, .box-mid, .box-right, .box-bottom, .box-bottom-r,.box-bottom-l, .box{
+        padding-top: 20px;
+        background: #fff;
+
+    }
+
+
+
+    .box-left{
+        border-right: 2px solid #ef9b00;
+        border-bottom: 2px solid #ef9b00;
+
+    }
+
+    .box-mid{
+        border-bottom: 2px solid #ef9b00;
+    }
+
+    .box-right{
+        border-left: 2px solid #ef9b00;
+        border-bottom: 2px solid #ef9b00;
+
+    }
+
+    .box-bottom-r{
+        border-right: 2px solid #ef9b00;
+    }
+
+    .box-bottom-l{
+        border-left: 2px solid #ef9b00;
+    }
+
+    .box-left:hover, .box-mid:hover, .box-right:hover, .box-bottom:hover, .box-bottom-r:hover,.box-bottom-l:hover, .box:hover{
+        color: #ef9b00;
+
+    }
+
+    input.contact, textarea.contact, button.contact{
+        margin-top: 20px;
+    }
+
+    div.contact{
+        padding-top: 20px;
+    }
+
+    .contact-top{
+        padding-top: 50px;
+    }
+
+    #glyphicon{
+
+    }
+
+    p.footpad{
+        margin-bottom: 0px;
+    }
+
+    .headbg{
+        background: #fafafa;
+        padding-right: 20px;
+    }
+
+    #login_modal{
+        width: 360px;
+        margin: 0 auto;
+    }
+
+    img.pic-help{
+        padding-top: 20px;
+        padding-bottom: 30px;
+    }
+
+    .list-group-item:first-child, .list-group-item:last-child{
+        border-radius: 0px;
+    }
+
+    a.list-group-item:first-child{
+        color: #fff;
+    }
+    a:hover.list-group-item{
+        background: #353535;
+        color: #fff;
+    }
+
+    .help-title{
+        padding: 15px 15px;
+        margin-top: 2px;
+    }
+
+    p.help{
+        padding-left: 15px;
+    }
+
+    .help-content{
+        float: right;
+    }
+
+    .fixed-help{
+        position: fixed;
+        top: 20px;
+        width: 22.6%;
+
+    }
+
+
+
+    .help-width{
+        width: 100%;
+    }	
+
+    .gn-search-page .nav-pills {
+        text-align:left;
+    }
+
+    /*!
+     * bootstrap-vertical-tabs - v1.2.1
+     * https://dbtek.github.io/bootstrap-vertical-tabs
+     * 2014-11-07
+     * Copyright (c) 2014 İsmail Demirbilek
+     * License: MIT
+     */
+    .tabs-left, .tabs-right {
+        border-bottom: none;
+        padding-top: 2px;
+    }
+    .tabs-left {
+        border-right: 1px solid #ddd;
+    }
+    .tabs-right {
+        border-left: 1px solid #ddd;
+    }
+    .tabs-left>li, .tabs-right>li {
+        float: none;
+        margin-bottom: 2px;
+    }
+    .tabs-left>li {
+        margin-right: -1px;
+    }
+    .tabs-right>li {
+        margin-left: -1px;
+    }
+    .tabs-left>li.active>a,
+    .tabs-left>li.active>a:hover,
+    .tabs-left>li.active>a:focus {
+        border-bottom-color: #ddd;
+        border-right-color: transparent;
+    }
+
+    .tabs-right>li.active>a,
+    .tabs-right>li.active>a:hover,
+    .tabs-right>li.active>a:focus {
+        border-bottom: 1px solid #ddd;
+        border-left-color: transparent;
+    }
+    .tabs-left>li>a {
+        border-radius: 4px 0 0 4px;
+        margin-right: 0;
+        display:block;
+    }
+    .tabs-right>li>a {
+        border-radius: 0 4px 4px 0;
+        margin-right: 0;
+    }
+    .sideways {
+        margin-top:50px;
+        border: none;
+        position: relative;
+    }
+    .sideways>li {
+        height: 20px;
+        width: 120px;
+        margin-bottom: 100px;
+    }
+    .sideways>li>a {
+        border-bottom: 1px solid #ddd;
+        border-right-color: transparent;
+        text-align: center;
+        border-radius: 4px 4px 0px 0px;
+    }
+    .sideways>li.active>a,
+    .sideways>li.active>a:hover,
+    .sideways>li.active>a:focus {
+        border-bottom-color: transparent;
+        border-right-color: #ddd;
+        border-left-color: #ddd;
+    }
+    .sideways.tabs-left {
+        left: -50px;
+    }
+    .sideways.tabs-right {
+        right: -50px;
+    }
+    .sideways.tabs-right>li {
+        -webkit-transform: rotate(90deg);
+        -moz-transform: rotate(90deg);
+        -ms-transform: rotate(90deg);
+        -o-transform: rotate(90deg);
+        transform: rotate(90deg);
+    }
+    .sideways.tabs-left>li {
+        -webkit-transform: rotate(-90deg);
+        -moz-transform: rotate(-90deg);
+        -ms-transform: rotate(-90deg);
+        -o-transform: rotate(-90deg);
+        transform: rotate(-90deg);
+    }
+</style>
+<div id="nopad">
+    <div class="search-bg" >
+        <div class="col-md-10 col-md-offset-1">
+            <div class="search-box">
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <h1 data-translate="">เริ่มต้น</h1>
+                    </div>
+                    <div class="col-md-12 text-center"  data-translate=""
+                         data-translate-values="{records: '{{searchInfo.count}}'}" >searchOver</div>
+                    <div class="col-md-12 text-center">
+                        <div class="input-group gn-form-any">
+                            <input type="text"
+                                   class="form-control"
+                                   autofocus=""
+                                   data-ng-model="homeAnyField"
+                                   data-ng-model-options="modelOptions"
+                                   placeholder="{{'anyPlaceHolder'| translate}}"
+                                   data-ng-keyup="$event.keyCode == 13 && goToSearch(homeAnyField)"
+                                   data-typeahead="address for address in getAnySuggestions($viewValue)"
+                                   data-typeahead-loading="anyLoading"
+                                   data-typeahead-min-length="1"/>
+                            <span class="input-group-btn">
+                                <a class="btn btn-default orange-bg"
+                                   type="button"
+                                   data-ng-href="#/search?any={{homeAnyField}}">
+                                    <i class="fa fa-search"></i>
+                                </a>
+                            </span>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div> 
+    </div> 
+</div>
+
+<div>
+
+    <!-- Nav tabs -->
+    <ul class="nav nav-pills orange-bg tab-c" id="tab_pad" role="tablist">
+        <li class="tabb" id="mark_tab">|</li>
+        <li role="presentation" class="active"><a href="/geonetwork/srv/tha/catalog.search#/home#home" aria-controls="home" role="tab" data-toggle="tab">ค้นหาจากประเภทข้อมูล</a></li>
+        <li class="tabb" id="mark_tab">|</li>
+        <li role="presentation" class="tabb"><a href="/geonetwork/srv/tha/catalog.search#/home#profile" aria-controls="profile" role="tab" data-toggle="tab">ค้นหาจากรายชื่อหน่วยงาน</a></li>
+        <li class="tabb" id="mark_tab">|</li>
+
+    </ul>
+
+    <!-- Tab panes -->
+    <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active" id="home">
+            <div>
+
+                <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+
+
+                    <!-- Wrapper for slides -->
+                    <div class="carousel-inner" role="listbox">
+                        <div class="item active">
+                            <div class="col-md-10 col-md-offset-2 ">
+
+                                <a  href="#metadata/89349f79-c082-46b7-8035-17355da1ac08">
+                                    <div class="template" tabindex="1">
+                                        <img src="../../catalog/views/default/images/icon/camera.png" class="img-responsive displayed size">
+                                        <p class="cam text-center">ชั้นข้อมูลภาพถ่ายอากาศออร์โท</p>
+                                    </div>
+                                </a>
+                                <a  href="">
+                                    <div class="template" tabindex="1">
+                                        <img src="../../catalog/views/default/images/icon/sattle.png" class="img-responsive displayed sat">
+                                        <p class="sat text-center">ชั้นข้อมูลภาพถ่ายดาวเทียมดัดแก้</p>
+                                    </div>
+                                </a>
+                                <a href="#metadata/66da51bc-afa5-4af1-b188-28fb0a5f76b4">
+                                    <div class="template" tabindex="1">
+                                        <img src="../../catalog/views/default/images/icon/imagery%20base%20map.png" class="img-responsive displayed icon">
+                                        <p class="icon text-center">ชั้นข้อมูลหมุดหลักฐานแผนที่</p>
+                                    </div>
+                                </a>
+                                <a  href="#metadata/e5f7a262-68b3-4665-9f5b-a2daada1645c">
+                                    <div class="template" tabindex="1">
+                                        <img src="../../catalog/views/default/images/icon/mount.png" class="img-responsive displayed size">
+                                        <p class="cam text-center">ชั้นข้อมูลความสูงภูมิประเทศเชิงเลข</p>
+                                    </div>
+                                </a>
+
+                                <a href="#metadata/4cdf4deb-cb9f-4ee0-82e8-1d5e5bfce754">
+                                    <div class="template" tabindex="1">
+                                        <img src="../../catalog/views/default/images/icon/boundaries.png" class="img-responsive displayed icon bound">
+                                        <p class="icon text-center">ชั้นข้อมูลเขตการปกครอง</p>
+                                    </div>
+                                </a>
+                                <a  href="#/metadata/d7773069-ab24-4f6a-b681-4a890548d4d2">
+                                    <div class="template" tabindex="1">
+                                        <img src="../../catalog/views/default/images/icon/transportation.png" class="img-responsive displayed icon bound">
+                                        <p class="icon text-center">ชั้นข้อมูลเส้นทางคมนาคม</p>
+                                    </div>
+                                </a>
+
+
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="col-md-10 col-md-offset-2 ">
+                                <a  href="#metadata/91c9413d-5292-4625-9400-4a2a8c1f86a5">
+                                    <div class="template" tabindex="1">
+                                        <img src="../../catalog/views/default/images/icon/inland%20water.png" class="img-responsive displayed water bound">
+                                        <p class="icon text-center">ชั้นข้อมูลแหล่งน้ำ</p>
+                                    </div>
+                                </a>
+
+                                <a href="#metadata/f1042746-b161-4f0f-8d78-dc9a80e5ecc7">
+                                    <div class="template" tabindex="1">
+                                        <img src="../../catalog/views/default/images/icon/Structure.png" class="img-responsive displayed icon">
+                                        <p class="cam text-center">ชั้นข้อมูลเขตชุมชน/อาคาร</p>
+                                    </div>
+                                </a>
+                                <a  href="#metadata/8291d0ab-c872-497e-9b4b-6f9b39bb1ad1">
+                                    <div class="template" tabindex="1">
+                                        <img src="../../catalog/views/default/images/icon/Planning.png" class="img-responsive displayed icon">
+                                        <p class="cam text-center">ชั้นข้อมูลการใช้ประโยชน์ที่ดิน</p>
+                                    </div>
+                                </a>
+                                <a href="#metadata/9278ab8f-c9a4-4762-a8e8-fdae2ca419fc">
+                                    <div class="template" tabindex="1">
+                                        <img src="../../catalog/views/default/images/icon/environment.png" class="img-responsive displayed icon">
+                                        <p class="cam text-center">ชั้นข้อมูลป่าไม้</p>
+                                    </div>
+                                </a>
+                                <a  href="#metadata/389dd642-4373-4da1-9d00-67fddf2e1ac1">
+                                    <div class="template" tabindex="1">
+                                        <img src="../../catalog/views/default/images/icon/geo%20info.png" class="img-responsive displayed icon">
+                                        <p class="cam text-center">ชั้นข้อมูลแผนที่ภูมิประเทศ</p>
+                                    </div>
+                                </a>
+                                <a href="#metadata/4c2d4c55-bd74-4a05-bdbc-c70aeffff3e1">
+                                    <div class="template" tabindex="1">
+                                        <img src="../../catalog/views/default/images/icon/Farming.png" class="img-responsive displayed icon">
+                                        <p class="cam text-center">ชั้นข้อมูลแปลงที่ดิน</p>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="col-md-10 col-md-offset-2 ">
+                                <a href="#metadata/c83b373a-8ba8-4118-9743-c2d76ea28bcf">
+                                    <div class="template" tabindex="1">
+                                        <img src="../../catalog/views/default/images/icon/Ocean.png" class="img-responsive displayed icon">
+                                        <p class="cam text-center">ชั้นข้อมูลอุทกศาสตร์</p>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>  
+                    </div>
+
+                    <!-- Controls -->
+                    <a class="left carousel-control" href="/geonetwork/srv/tha/catalog.search#/home#carousel-example-generic" role="button" data-slide="prev">
+                        <img src="../../catalog/views/default/images/arrow-left.png" class="arrow">
+
+                    </a>
+                    <a class="right carousel-control" href="/geonetwork/srv/tha/catalog.search#/home#carousel-example-generic" role="button" data-slide="next">
+                        <img src="../../catalog/views/default/images/arrow-right.png" class="arrow">
+                    </a>
+                </div>
+
+            </div>
+
+        </div>
+        <div role="tabpanel" class="tab-pane" id="profile">
+            <div>
+                <div id="carousel-example-generic2" class="carousel slide" data-ride="carousel">
+
+
+                    <!-- Wrapper for slides -->
+                    <div class="carousel-inner" role="listbox">
+                        <div class="item active">
+                            <div class="col-md-10 col-md-offset-2 ">
+                                <a href="#">
+                                    <div class="template" tabindex="1">
+                                        <p class="organisation text-center">กรมแผนที่ทหาร</p>
+                                    </div>
+                                </a>
+                                <a href="#">
+                                    <div class="template" tabindex="1">
+                                        <p class="organisation text-center">กรมพัฒนาที่ดิน</p>
+                                    </div>
+                                </a>
+                                <a href="#">
+                                    <div class="template" tabindex="1">
+                                        <p class="organisation text-center">กระทรวงทรัพยากรธรรมชาติและสิ่งแวดล้อม</p>
+                                    </div>
+                                </a>
+                                <a href="#">
+                                    <div class="template" tabindex="1">
+                                        <p class="organisation text-center">กรมโยธาธิการและผังเมือง</p>
+                                    </div>
+                                </a>
+                                <a href="#">
+                                    <div class="template" tabindex="1">
+                                        <p class="organisation text-center">กรมที่ดิน</p>
+                                    </div>
+                                </a>
+                                <a href="#">
+                                    <div class="template" tabindex="1">
+                                        <p class="organisation text-center">สำนักผังเมือง กรุงเทพ</p>
+                                    </div>
+                                </a>
+
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="col-md-10 col-md-offset-2 ">
+                                <a href="#">
+                                    <div class="template" tabindex="1">
+                                        <p class="organisation text-center">กรมการปกครอง</p>
+                                    </div>
+                                </a>
+                                <a href="#">
+                                    <div class="template" tabindex="1">
+                                        <p class="organisation text-center">กระทรวงคมนาคม</p>
+                                    </div>
+                                </a>
+
+                                <a href="#">
+                                    <div class="template" tabindex="1">
+                                        <p class="organisation text-center">กรมทางหลวง</p>
+                                    </div>
+                                </a>
+                                <a href="#">
+                                    <div class="template" tabindex="1">
+                                        <p class="organisation text-center">กรมทางหลวงชนบท</p>
+                                    </div>
+                                </a>
+                                <a href="#">
+                                    <div class="template" tabindex="1">
+                                        <p class="organisation text-center">กรมทรัพยากรน้ำ</p>
+                                    </div>
+                                </a>
+                                <a href="#">
+                                    <div class="template" tabindex="1">
+                                        <p class="organisation text-center">กรมชลประทาน</p>
+                                    </div>
+                                </a> 
+
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="col-md-10 col-md-offset-2 ">
+                                <a href="#">
+                                    <div class="template" tabindex="1">
+                                        <p class="organisation text-center">กรมทรัพยากรน้ำบาดาล</p>
+                                    </div>
+                                </a>
+                                <a href="#">
+                                    <div class="template" tabindex="1">
+                                        <p class="organisation text-center">กรมส่งเสริมการปกครองท้องถิ่น</p>
+                                    </div>
+                                </a>
+                                <a href="#">
+                                    <div class="template" tabindex="1">
+                                        <p class="organisation text-center">กรมป่าไม้</p>
+                                    </div>
+                                </a>
+                                <a href="#">
+                                    <div class="template" tabindex="1">
+                                        <p class="organisation text-center">กรมอุทยานแห่งชาติสัตว์ป่าและพันธุ์พืช</p>
+                                    </div>
+                                </a>
+                                <a href="#">
+                                    <div class="template" tabindex="1">
+                                        <p class="organisation text-center">กรมธนารักษ์</p>
+                                    </div>
+                                </a>
+                                <a href="#">
+                                    <div class="template" tabindex="1">
+                                        <p class="organisation text-center">สำนักงานการปฏิรูปที่ดินเพื่อเกษตรกรรม</p>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="col-md-10 col-md-offset-2 ">
+                                <a href="#">
+                                    <div class="template" tabindex="1">
+                                        <p class="organisation text-center">กรมอุทกศาสตร์</p>
+                                    </div>
+                                </a>
+                                <a href="#">
+                                    <div class="template" tabindex="1">
+                                        <p class="organisation text-center">กรมทรัพยากรน้ำ</p>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Controls -->
+                    <a class="left carousel-control" href="/geonetwork/srv/tha/catalog.search#/home#carousel-example-generic2" role="button" data-slide="prev">
+                        <img src="../../catalog/views/default/images/arrow-left.png" class="arrow">
+
+                    </a>
+                    <a class="right carousel-control" href="/geonetwork/srv/tha/catalog.search#/home#carousel-example-generic2" role="button" data-slide="next">
+                        <img src="../../catalog/views/default/images/arrow-right.png" class="arrow">
+                    </a>
+                </div>
+
+
+
+            </div>  
+        </div>
+
     </div>
-  </div>
-  <div class="row">
-    <div class="col-sm-8" data-ng-show="browse !== ''">
-      <span data-translate="">browseBy</span>
-      <span data-ng-show="searchInfo.facet['inspireThemes'].length > 0 && searchInfo.facet['topicCats'].length > 0">
-        <label data-ng-show="searchInfo.facet['inspireThemes'].length > 0">
-          <input type="radio" name="browse" value="inspire" data-ng-model="browse"/>
-          <span data-translate="">inspireThemes</span>
-        </label>
-        <label data-ng-show="searchInfo.facet['topicCats'].length > 0">
-          <input type="radio" name="browse" value="topics" data-ng-model="browse"/>
-          <span data-translate="">topics</span>
-        </label>
-      </span>
-      <label data-ng-show="searchInfo.facet['inspireThemes'].length > 0 && searchInfo.facet['topicCats'].length == 0"><span data-translate="">inspireThemes</span></label>
-      <label data-ng-show="searchInfo.facet['topicCats'].length > 0 && searchInfo.facet['inspireThemes'].length == 0"><span data-translate="">topics</span></label>
-      <div class="row">
-        <span id="chips-card" data-ng-repeat="(key, facet) in searchInfo.facet['topicCats']"
-          class="col-xs-6 col-sm-4 col-lg-3" data-ng-show="browse === 'topics'">
-            <div class="badge-icon">
-              <a data-ng-href="#/search?facet.q=topicCat%2F{{facet['@name']}}">
-                <span class="badge-result badge-result-topic" >
-                  <i class="fa fa-3x fa-table gn-icon gn-icon-{{facet['@name']}}"></i>
-                </span>
-              </a>
+
+
+</div>
+<hr>
+
+<br><br>
+<div id="content">
+    <div class="row">
+        <div class="col-md-5 orange-bg white text-center img-text orange-content">
+            <img src="../../catalog/views/default/images/space.png" class="img-responsive displayed space">
+            <p class="orange-content" style="font-size: 30px;">THAILAND SPATIAL DATA INFRASTRUCTURE (ThaiSDI)</p>
+
+        </div>
+        <div class="col-md-7 intro">
+            <b>โครงสร้างพื้นฐานข้อมูลภูมิสารสนเทศของประเทศไทย</b>
+            <br><br>
+            <p class="text-justuify">เป็นระบบที่ถูกพัฒนาขึ้นตามมติคณะกรรมการภูมิสารสนเทศแห่งชาติปี ๒๕๕๕ มีวัตถุประสงค์เพื่อสนับสนุน และส่งเสริมการใช้ข้อมูลร่วมกันอย่างมีประสิทธิภาพระหว่างหน่วยงานต่างๆ ทั้งภาครัฐ ภาคเอกชนและสถาบันการศึกษา และองค์กรอิสระ ซึ่งจะช่วยลดปัญหาความซับซ้อนของข้อมูล และประหยัดงบประมาณในการดำเนินการเกี่ยวกับข้อมูล และประหยัดงบประมาณในการดำเนินการเกี่ยวกับข้อมูล นอกจากนี้ยังรวมถึงการสร้างระบบเครือข่ายเพื่อเชื่อโยงฐานข้อมูลของผู้ให้บริการข้อมูลต่างๆ ให้สามารถบริการข้อมูลที่ถูกต้อง ทันสมัย และตรงกับความต้องการของผู้ใช้ ทำให้ผู้ใช้ข้อมูลในระดับต่างๆ เข้าถึงข้อมูลได้ง่าย เพิ่มประสิทธิภาพในการใช้ข้อมูลร่วมกัน และสามารถสร้างและพัฒนาความร่วมมือทั้งในระดับท้องถิ่น ระดับประเทศ และระดับโลกระหว่างภาครัฐบาล ภาคเอกชน สถาบันการศึกษา และองค์กรอื่นๆ</p>
+            <div class="text-right">
+                <button type="button" class="btn orange-bg border-norad more" >More</button>
             </div>
-            <div class="badge-text">
-              <a title="{{facet['@label']}}" data-ng-href="#/search?facet.q=topicCat%2F{{facet['@name']}}">
-                <span class="gn-icon-label">{{facet['@label']}}</span><br>
-                <span class="badge">{{facet['@count']}}</span>
-              </a>
-            </div>
-        </span>
-        <span id="chips-card" data-ng-repeat="(key, facet) in searchInfo.facet['inspireThemesURI'] track by $index"
-          class="col-xs-6 col-sm-6 col-lg-4" data-ng-show="browse === 'inspire'">
-            <div class="badge-icon col-xs-3">
-              <a title="{{facet['@label']}}" data-ng-href="#/search?facet.q=inspireThemeURI%2F{{facet['@name'] | encodeURIComponent | encodeURIComponent}}">
-                <span class="badge-result badge-result-inspire" >
-                   <i class="fa fa-3x gn-icon iti-{{facet['@name'].slice(facet['@name'].lastIndexOf('/')+1)}}"></i>
-                </span>
-              </a>
-            </div>
-            <div class="badge-text col-xs-9">
-              <a title="{{facet['@label']}}" data-ng-href="#/search?facet.q=inspireThemeURI%2F{{facet['@name'] | encodeURIComponent | encodeURIComponent}}">
-                <span class="gn-icon-label">{{facet['@label']}}</span><br>
-                <span class="badge">{{facet['@count']}}</span>
-              </a>
-            </div>
-        </span>
-      </div>
-    </div>
-    <div class="col-sm-4" data-ng-show="searchInfo.facet['types'].length > 0">
-        <span data-translate="">browseTypes</span>
-        <div class="row">
-          <span id="chips-card" data-ng-repeat="(key, facet) in searchInfo.facet['types']"
-                   data-ng-show="facet['@label']"
-                   class="col-xs-6 col-sm-6 col-lg-6">
-            <div class="badge-icon">
-              <a data-ng-href="#/search?facet.q=type%2F{{facet['@name']}}">
-                <span class="badge-result badge-result-type" >
-                  <i class="fa fa-3x fa-table gn-icon gn-icon-{{facet['@name']}}"></i>
-                </span>
-              </a>
-            </div>
-            <div class="badge-text">
-              <a title="{{facet['@label']}}" data-ng-href="#/search?facet.q=type%2F{{facet['@name']}}">
-                <span class="gn-icon-label">{{facet['@label']}}</span><br>
-                <span class="badge">{{facet['@count']}}</span>
-              </a>
-            </div>
-          </span>
         </div>
     </div>
-  </div>
-  <div class="row gn-row-info">
-      <div class="col-xs-12">
-        <tabset id="info-tabset">
-          <tab heading="{{'lastRecords' | translate}}"
-               active="infoTabs.lastRecords.active">
-            <form class="form-horizontal"
-                  role="nav"
-                  data-ng-controller="gnsSearchLatestController"
-                  data-ng-search-form=""
-                  data-runSearch="true"
-                  data-ng-show="searchResults.records.length > 0">
 
-              <div data-gn-info-list=""></div>
-            </form>
-          </tab>
-          <tab heading="{{'preferredRecords' | translate}}"
-               active="infoTabs.preferredRecords.active">
-            <form class="form-horizontal"
-                  role="nav"
-                  data-ng-controller="gnsSearchPopularController"
-                  data-ng-search-form=""
-                  data-runSearch="true"
-                  data-ng-show="searchResults.records.length > 0">
-              <div data-gn-info-list=""></div>
-            </form>
-          </tab>
-        </tabset>
-      </div>
-  </div>
+
+
 </div>
+<br><br>
+
+
+
+<div class="col-md-12">
+    <div class="col-md-2 tab-news-left"> <!-- required for floating -->
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs tabs-left text-center orange">
+            <li class="active"><a href="/geonetwork/srv/tha/catalog.search#/home#fgds" data-toggle="tab">ข้อมูลสารสนเทศพื้นฐานของประเทศ (FGDS)</a></li>
+            <li><a href="#" data-toggle="tab">ข้อมูลสารสนเทศอื่นๆ</a></li>
+            <li><a href="/geonetwork/srv/tha/catalog.search#/home#metadatas" data-toggle="tab">คำอธิบายข้อมูล</a></li>
+            <li><a href="/geonetwork/srv/tha/catalog.search#/home#new" data-toggle="tab">ข้อมูลล่าสุด</a></li>
+            <li><a href="/geonetwork/srv/tha/catalog.search#/home#popular" data-toggle="tab">ข้อมูลที่นิยม</a></li>
+        </ul>
+    </div>
+
+    <div class="col-md-10 tab-news">
+        <!-- Tab panes -->
+        <div class="tab-content">
+            <div class="tab-pane active" id="fgds">
+                <div id="carousel-example-generic3" class="carousel slide" data-ride="carousel">
+                    <!-- Wrapper for slides -->
+                    <div class="carousel-inner" role="listbox">
+                        <div class="item active">
+                            <div class="row">  
+                                <div class="col-md-1">
+                                </div>
+                                <div class="col-md-10">
+                                    <div class="col-md-12">
+                                        <div class="col-md-4">
+                                            <a href="#metadata/89349f79-c082-46b7-8035-17355da1ac08"> 
+                                                <div class="newstemplate" tabindex="1">
+                                                    <p class="text-center">ชั้นข้อมูลภาพถ่ายทางอากาศออร์โท</p>
+                                                </div>
+                                            </a>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <a href="#metadata/89349f79-c082-46b7-8035-17355da1ac08">
+                                                <div class="newstemplate" tabindex="1">
+                                                    <p class="text-center" >ชั้นข้อมูลภาพถ่ายดาวเทียมดัดแก้</p>
+                                                </div>
+                                            </a>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <a href="#metadata/66da51bc-afa5-4af1-b188-28fb0a5f76b4">
+                                                <div class="newstemplate" tabindex="1">
+                                                    <p class="text-center">ชั้นข้อมูลหมุดหลักฐานแผนที่</p>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-1">
+                                </div>
+                            </div>
+                            <!-- End Row -->
+                            <div class="row">  
+                                <div class="col-md-1">
+
+                                </div>
+                                <div class="col-md-10">
+                                    <div class="col-md-12">
+                                        <div class="col-md-4">
+                                            <a href="#metadata/e5f7a262-68b3-4665-9f5b-a2daada1645c">
+                                                <div class="newstemplate" tabindex="1">
+                                                    <p class="text-center">ชั้นข้อมูลความสูงภูมิประเทศเชิงเลข</p>
+                                                </div>
+                                            </a>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <a href="#metadata/4cdf4deb-cb9f-4ee0-82e8-1d5e5bfce754"> 
+
+                                                <div class="newstemplate" tabindex="1">
+                                                    <p class="text-center">ชั้นข้อมูลเขตการปกครอง</p>
+                                                </div>
+                                            </a>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <a  href="#/metadata/d7773069-ab24-4f6a-b681-4a890548d4d2">
+                                                <div class="newstemplate" tabindex="1">
+                                                    <p class="text-center">ชั้นข้อมูลเส้นทางคมนาคม</p>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-1">
+
+                                </div>
+                            </div>
+                            <!-- End Row -->
+                            <div class="row">  
+                                <div class="col-md-1">
+                                </div>
+                                <div class="col-md-10">
+                                    <div class="col-md-12">
+                                        <div class="col-md-4">
+                                            <a href="#metadata/91c9413d-5292-4625-9400-4a2a8c1f86a5">
+                                                <div class="newstemplate" tabindex="1">
+                                                    <p class="text-center">ชั้นข้อมูลแหล่งน้ำ</p>
+                                                </div>
+                                            </a>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <a href="#metadata/f1042746-b161-4f0f-8d78-dc9a80e5ecc7">
+                                                <div class="newstemplate" tabindex="1">
+                                                    <p class="text-center">ชั้นข้อมูลเขตชุมชน/อาคาร</p>
+                                                </div>
+                                            </a>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <a href="#metadata/8291d0ab-c872-497e-9b4b-6f9b39bb1ad1">
+                                                <div class="newstemplate" tabindex="1">
+                                                    <p class="text-center">ชั้นข้อมูลการใช้ประโยชน์ที่ดิน</p>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-1">
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="item">
+                            <div class="row">  
+                                <div class="col-md-1">
+                                </div>
+                                <div class="col-md-10">
+                                    <div class="col-md-12">
+                                        <div class="col-md-4">
+                                            <a href="#metadata/c83b373a-8ba8-4118-9743-c2d76ea28bcf">
+                                                <div class="newstemplate" tabindex="1">
+                                                    <p class="text-center">ชั้นข้อมูลอุทกศาสตร์</p>
+                                                </div>
+                                            </a>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                                <div class="col-md-1">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Controls -->
+                    <a class="left carousel-control height300" href="/geonetwork/srv/tha/catalog.search#/home#carousel-example-generic3" role="button" data-slide="prev">
+                        <img src="../../catalog/views/default/images/arrow-left.png" class="news-arrow">
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="right carousel-control height300" href="/geonetwork/srv/tha/catalog.search#/home#carousel-example-generic3" role="button" data-slide="next">
+                        <img src="../../catalog/views/default/images/arrow-right.png" class="news-arrow">
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+
+
+
+
+            </div>
+            <div class="tab-pane" id="otherdata">
+
+
+
+
+
+            </div>
+            <div class="tab-pane" id="metadatas">
+
+                <div id="carousel-example-generic4" class="carousel slide" data-ride="carousel" data-interval="false">
+                    <!-- Wrapper for slides -->
+                    <div class="carousel-inner" role="listbox">
+                        <div class="item active">
+                            <div class="row">  
+                                <div class="col-md-1">
+                                </div>
+                                <div class="col-md-10">
+                                    <div class="col-md-12">
+                                        <div class="col-md-4">
+                                            <a  data-ng-href="#/search?resultType=details&from=1&to=20&sortBy=relevance&fast=index&_content_type=json&_cat=CAT_TEST1"
+                                                href="#/search?resultType=details&from=1&to=20&sortBy=relevance&fast=index&_content_type=json&_cat=CAT_TEST1">
+                                                <div class="newstemplate" tabindex="1">
+                                                    <p class="text-center">NSDI_Training</p>
+                                                </div>
+                                            </a>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <a hdata-ng-href="#/search?resultType=details&from=1&to=20&sortBy=relevance&fast=index&_content_type=json&_cat=TestMetadata"
+                                               href="#/search?resultType=details&from=1&to=20&sortBy=relevance&fast=index&_content_type=json&_cat=TestMetadata">
+                                                <div class="newstemplate" tabindex="1">
+                                                    <p class="text-center">TestMetadata</p>
+                                                </div>
+                                            </a>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <a data-ng-href="#/search?resultType=details&from=1&to=20&sortBy=relevance&fast=index&_content_type=json&_cat=WMS_BKK"
+                                               href="#/search?resultType=details&from=1&to=20&sortBy=relevance&fast=index&_content_type=json&_cat=WMS_BKK">
+                                                <div class="newstemplate" tabindex="1">
+                                                    <p class="text-center">WMS_BKK</p>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-1">
+                                </div>
+                            </div>
+                            <div class="row">  
+                                <div class="col-md-1">
+
+                                </div>
+                                <div class="col-md-10">
+                                    <div class="col-md-12">
+                                        <div class="col-md-4">
+                                            <a  data-ng-href="#/search?resultType=details&from=1&to=20&sortBy=relevance&fast=index&_content_type=json&_cat=WMS_DMR"
+                                                href="#/search?resultType=details&from=1&to=20&sortBy=relevance&fast=index&_content_type=json&_cat=WMS_DMR">
+                                                <div class="newstemplate" tabindex="1">
+                                                    <p class="text-center">WMS_DMR</p>
+                                                </div>
+                                            </a>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <a data-ng-href="#/search?resultType=details&from=1&to=20&sortBy=relevance&fast=index&_content_type=json&_cat=WMS_DOAE"
+                                               href="#/search?resultType=details&from=1&to=20&sortBy=relevance&fast=index&_content_type=json&_cat=WMS_DOAE">
+                                                <div class="newstemplate" tabindex="1">
+                                                    <p class="text-center">WMS_DOAE</p>
+                                                </div>
+                                            </a>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <a  hdata-ng-href="#/search?resultType=details&from=1&to=20&sortBy=relevance&fast=index&_content_type=json&_cat=WMS_DOL"
+                                                href="#/search?resultType=details&from=1&to=20&sortBy=relevance&fast=index&_content_type=json&_cat=WMS_DOL">
+                                                <div class="newstemplate" tabindex="1">
+                                                    <p class="text-center">WMS_DOL</p>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-1">
+
+                                </div>
+                            </div>
+                            <div class="row">  
+                                <div class="col-md-1">
+                                </div>
+                                <div class="col-md-10">
+                                    <div class="col-md-12">
+                                        <div class="col-md-4">
+                                            <a  data-ng-href="#/search?resultType=details&from=1&to=20&sortBy=relevance&fast=index&_content_type=json&_cat=WMS_GISTDA"
+                                                href="#/search?resultType=details&from=1&to=20&sortBy=relevance&fast=index&_content_type=json&_cat=WMS_GISTDA">
+                                                <div class="newstemplate" tabindex="1">
+                                                    <p class="text-center">WMS_GISTDA</p>
+                                                </div>
+                                            </a>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <a  data-ng-href="#/search?resultType=details&from=1&to=20&sortBy=relevance&fast=index&_content_type=json&_cat=WMS_LDD"
+                                                href="#/search?resultType=details&from=1&to=20&sortBy=relevance&fast=index&_content_type=json&_cat=WMS_LDD">
+                                                <div class="newstemplate" tabindex="1">
+                                                    <p class="text-center">WMS_LDD</p>
+                                                </div>
+                                            </a>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <a data-ng-href="#/search?resultType=details&from=1&to=20&sortBy=relevance&fast=index&_content_type=json&_cat=WMS_PHETCHCHABUN"
+                                               href="#/search?resultType=details&from=1&to=20&sortBy=relevance&fast=index&_content_type=json&_cat=WMS_PHETCHCHABUN">
+                                                <div class="newstemplate" tabindex="1">
+                                                    <p class="text-center">WMS_PHETCHCHABUN</p>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-1">
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="item">
+                            <div class="row">  
+                                <div class="col-md-1">
+                                </div>
+                                <div class="col-md-10">
+                                    <div class="col-md-12">
+                                        <div class="col-md-4">
+                                            <a data-ng-href="#/search?resultType=details&from=1&to=20&sortBy=relevance&fast=index&_content_type=json&_cat=WMS_RTSD"
+                                               href="#/search?resultType=details&from=1&to=20&sortBy=relevance&fast=index&_content_type=json&_cat=WMS_RTSD">
+                                                <div class="newstemplate" tabindex="1">
+                                                    <p class="text-center">WMS_RTSD</p>
+                                                </div>
+                                            </a>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <a data-ng-href="#/search?resultType=details&from=1&to=20&sortBy=relevance&fast=index&_content_type=json&_cat=WMS_csrs.ku"
+                                               href="#/search?resultType=details&from=1&to=20&sortBy=relevance&fast=index&_content_type=json&_cat=WMS_csrs.ku">
+                                                <div class="newstemplate" tabindex="1">
+                                                    <p class="text-center">WMS_csrs.ku</p>
+                                                </div>
+                                            </a>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <a  data-ng-href="#/search?resultType=details&from=1&to=20&sortBy=relevance&fast=index&_content_type=json&_cat=WMS_intell.rtaf"
+                                                href="#/search?resultType=details&from=1&to=20&sortBy=relevance&fast=index&_content_type=json&_cat=WMS_intell.rtaf">
+                                                <div class="newstemplate" tabindex="1">
+                                                    <p class="text-center">WMS_intell.rtaf</p>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-1">
+                                </div>
+                            </div>
+                            <!-- End row -->
+                            <div class="row">  
+                                <div class="col-md-1">
+                                </div>
+                                <div class="col-md-10">
+                                    <div class="col-md-12">
+                                        <div class="col-md-4">
+                                            <a data-ng-href="#/search?resultType=details&from=1&to=20&sortBy=relevance&fast=index&_content_type=json&_cat=WMS_rtsd"
+                                               href="#/search?resultType=details&from=1&to=20&sortBy=relevance&fast=index&_content_type=json&_cat=WMS_rtsd">
+                                                <div class="newstemplate" tabindex="1">
+                                                    <p class="text-center">WMS_rtsd</p>
+                                                </div>
+                                            </a>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <a data-ng-href="#/search?resultType=details&from=1&to=20&sortBy=relevance&fast=index&_content_type=json&_cat=WMS_ก.คมนาคม"
+                                               href="#/search?resultType=details&from=1&to=20&sortBy=relevance&fast=index&_content_type=json&_cat=WMS_ก.คมนาคม">
+                                                <div class="newstemplate" tabindex="1">
+                                                    <p class="text-center">WMS_ก.คมนาคม</p>
+                                                </div>
+                                            </a>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <a  data-ng-href="#/search?resultType=details&from=1&to=20&sortBy=relevance&fast=index&_content_type=json&_cat=WMS_พพ."
+                                                href="#/search?resultType=details&from=1&to=20&sortBy=relevance&fast=index&_content_type=json&_cat=WMS_พพ.">
+                                                <div class="newstemplate" tabindex="1">
+                                                    <p class="text-center">WMS_พพ.</p>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-1">
+                                </div>
+                            </div>
+                            <!-- End row -->
+                            <div class="row">  
+                                <div class="col-md-1">
+                                </div>
+                                <div class="col-md-10">
+                                    <div class="col-md-12">
+                                        <div class="col-md-4">
+                                            <a  data-ng-href="#/search?resultType=details&from=1&to=20&sortBy=relevance&fast=index&_content_type=json&_cat=WMS_สศก"
+                                                href="#/search?resultType=details&from=1&to=20&sortBy=relevance&fast=index&_content_type=json&_cat=WMS_สศก">
+                                                <div class="newstemplate" tabindex="1">
+                                                    <p class="text-center">WMS_สศก</p>
+                                                </div>
+                                            </a>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <a  data-ng-href="#/search?resultType=details&from=1&to=20&sortBy=relevance&fast=index&_content_type=json&_cat=WMS_อพท."
+                                                href="#/search?resultType=details&from=1&to=20&sortBy=relevance&fast=index&_content_type=json&_cat=WMS_อพท.">
+                                                <div class="newstemplate" tabindex="1">
+                                                    <p class="text-center">WMS_อพท.</p>
+                                                </div>
+                                            </a>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <a data-ng-href="#/search?resultType=details&from=1&to=20&sortBy=relevance&fast=index&_content_type=json&_cat=GISTDA_NODE_WMS"
+                                               href="#/search?resultType=details&from=1&to=20&sortBy=relevance&fast=index&_content_type=json&_cat=GISTDA_NODE_WMS">
+                                                <div class="newstemplate" tabindex="1">
+                                                    <p class="text-center">ข้อมูล WMS ของศูนย์ภูมิภาคฯ สทอภ.</p>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-1">
+                                </div>
+                            </div>
+
+
+                        </div>
+                        <div class="item">
+                            <div class="row">  
+                                <div class="col-md-1">
+                                </div>
+                                <div class="col-md-10">
+                                    <div class="col-md-12">
+                                        <div class="col-md-4">
+                                            <a data-ng-href="#/search?resultType=details&from=1&to=20&sortBy=relevance&fast=index&_content_type=json&_cat=WMSURL"
+                                               href="#/search?resultType=details&from=1&to=20&sortBy=relevance&fast=index&_content_type=json&_cat=WMSURL">
+                                                <div class="newstemplate" tabindex="1">
+                                                    <p class="text-center">ข้อมูลWMSอื่นๆ</p>
+                                                </div>
+                                            </a>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <a  data-ng-href="#/search?resultType=details&from=1&to=20&sortBy=relevance&fast=index&_content_type=json&_cat=Applications"
+                                                href="#/search?resultType=details&from=1&to=20&sortBy=relevance&fast=index&_content_type=json&_cat=Applications">
+                                                <div class="newstemplate" tabindex="1">
+                                                    <p class="text-center">ข้อมูลการประยุกต์ใช้ (Applications)</p>
+                                                </div>
+                                            </a>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <a  data-ng-href="#/search?resultType=details&from=1&to=20&sortBy=relevance&fast=index&_content_type=json&_cat=FGDS"
+                                                href="#/search?resultType=details&from=1&to=20&sortBy=relevance&fast=index&_content_type=json&_cat=FGDS">
+                                                <div class="newstemplate" tabindex="1">
+                                                    <p class="text-center">ข้อมูลภูมิสารสนเทศพื้นฐาน (FGDS)</p>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-1">
+                                </div>
+                            </div>
+                            <!-- End row -->
+                            <div class="row">  
+                                <div class="col-md-1">
+                                </div>
+                                <div class="col-md-10">
+                                    <div class="col-md-12">
+                                        <div class="col-md-4">
+                                            <a data-ng-href="#/search?resultType=details&from=1&to=20&sortBy=relevance&fast=index&_content_type=json&_cat=MetadataXML"
+                                               href="#/search?resultType=details&from=1&to=20&sortBy=relevance&fast=index&_content_type=json&_cat=MetadataXML">
+                                                <div class="newstemplate" tabindex="1">
+                                                    <p class="text-center">คำอธิบายข้อมูล XML</p>
+                                                </div>
+                                            </a>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <a data-ng-href="#/search?resultType=details&from=1&to=20&sortBy=relevance&fast=index&_content_type=json&_cat=Yasothon"
+                                               href="#/search?resultType=details&from=1&to=20&sortBy=relevance&fast=index&_content_type=json&_cat=Yasothon">
+                                                <div class="newstemplate" tabindex="1">
+                                                    <p class="text-center">ยโสธร</p>
+                                                </div>
+                                            </a>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <a  data-ng-href="#/search?resultType=details&from=1&to=20&sortBy=relevance&fast=index&_content_type=json&_cat=Phetburi"
+                                                href="#/search?resultType=details&from=1&to=20&sortBy=relevance&fast=index&_content_type=json&_cat=Phetburi">
+                                                <div class="newstemplate" tabindex="1">
+                                                    <p class="text-center">เพชรบุรี</p>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-1">
+                                </div>
+                            </div>
+
+
+
+                        </div>
+                    </div>
+
+                    <!-- Controls -->
+                    <a class="left carousel-control height300" href="/geonetwork/srv/tha/catalog.search#/home#carousel-example-generic4" role="button" data-slide="prev">
+                        <img src="../../catalog/views/default/images/arrow-left.png" class="news-arrow">
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="right carousel-control height300" href="/geonetwork/srv/tha/catalog.search#/home#carousel-example-generic4" role="button" data-slide="next">
+                        <img src="../../catalog/views/default/images/arrow-right.png" class="news-arrow">
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+
+
+            </div>
+            <div class="tab-pane" id="new">
+                <form class="form-horizontal"
+                      role="nav"
+                      data-ng-controller="gnsSearchLatestController"
+                      data-ng-search-form=""
+                      data-runSearch="true"
+                      data-ng-show="searchResults.records.length > 0">
+
+                    <div data-gn-info-list=""></div>
+                </form>
+
+
+
+            </div>
+            <div class="tab-pane" id="popular">
+                <form class="form-horizontal"
+                      role="nav"
+                      data-ng-controller="gnsSearchPopularController"
+                      data-ng-search-form=""
+                      data-runSearch="true"
+                      data-ng-show="searchResults.records.length > 0">
+                    <div data-gn-info-list=""></div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <br><br>
+</div> 
+
+
+<div class="clearfix ng-scope"></div>
+

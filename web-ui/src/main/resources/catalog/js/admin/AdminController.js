@@ -152,7 +152,9 @@
           {name: 'settings', route: '#settings',
             classes: 'btn-warning', icon: 'fa-gear'},
           {name: 'tools', route: '#tools',
-            classes: 'btn-warning', icon: 'fa-medkit'}]
+            classes: 'btn-warning', icon: 'fa-medkit'},
+          {name: 'wms', route: '#reports/report-wms',
+            classes: 'btn-danger', icon: 'fa-cubes'}]
         // TODO : add other role menu
       };
 
