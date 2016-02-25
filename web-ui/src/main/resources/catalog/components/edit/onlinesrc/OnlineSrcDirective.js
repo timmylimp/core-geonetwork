@@ -989,6 +989,8 @@
                       // Proxy may return 500 when document is not proxyable
                       scope.isUrlOk = response.status === 200;
                     });
+                  } else {
+                    scope.isUrlOk = true;
                   }
                 };
 

@@ -62,10 +62,28 @@
           * user and another to the catalog admin if a profile
           * higher than registered user is requested.
           */
-         $scope.register = function(formId) {
-           $http.get('create.account@json?' + $(formId).serialize())
+         $scope.userInfo = {
+           username: '',
+           surname: '',
+           name: '',
+           emailAddresses: [''],
+           organisation: '',
+           profile: 'RegisteredUser',
+           addresses: [{
+             address: '',
+             city: '',
+             country: '',
+             state: '',
+             zip: ''
+           }]
+         };
+         $scope.register = function() {
+           $scope.userInfo.emailAddresses[0] = $scope.userInfo.username;
+           $http.put('../api/0.1/user/actions/register', $scope.userInfo)
           .success(function(data) {
-             $scope.registrationStatus = data;
+             $rootScope.$broadcast('StatusUpdated', {
+               title: data
+             });
            })
           .error(function(data) {
              $rootScope.$broadcast('StatusUpdated', {
@@ -78,11 +96,17 @@
          /**
           * Remind user password.
           */
-         $scope.remindMyPassword = function(formId) {
-           $http.get('password.reminder@json?' + $(formId).serialize())
+         $scope.remindMyPassword = function() {
+           $http.get('../api/0.1/user/' +
+           $scope.usernameToRemind +
+                        '/actions/forgot-password')
             .success(function(data) {
              $scope.passwordReminderStatus = data;
              $scope.sendPassword = false;
+             $rootScope.$broadcast('StatusUpdated', {
+               title: data
+             });
+             $scope.usernameToRemind = null;
            })
             .error(function(data) {
              $rootScope.$broadcast('StatusUpdated', {
@@ -96,18 +120,19 @@
          /**
           * Change user password.
           */
-         $scope.updatePassword = function(formId) {
-           $http.get('password.change@json?' + $(formId).serialize())
+         $scope.updatePassword = function() {
+           $http.patch('../api/0.1/user/' + $scope.userToRemind, {
+             password: $scope.password,
+             changeKey: $scope.changeKey
+           })
             .success(function(data) {
-             if (data == 'null') {
-               $scope.passwordUpdated = true;
-             }
+             $rootScope.$broadcast('StatusUpdated', {
+               title: data
+             });
            })
             .error(function(data) {
-
              $rootScope.$broadcast('StatusUpdated', {
-               title: $translate('passwordUpdateError'),
-               error: data,
+               title: data,
                timeout: 0,
                type: 'danger'});
            });

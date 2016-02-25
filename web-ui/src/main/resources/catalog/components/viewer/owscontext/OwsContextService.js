@@ -71,7 +71,9 @@
         var layersToRemove = [];
         map.getLayers().forEach(function(layer) {
           if (layer.displayInLayerManager) {
-            layersToRemove.push(layer);
+            if (!(layer.get('fromUrlParams') && firstLoad)) {
+              layersToRemove.push(layer);
+            }
           }
         });
         for (var i = 0; i < layersToRemove.length; i++) {
@@ -321,6 +323,8 @@
        * @param {ol.Map} map object
        */
       this.saveToLocalStorage = function(map) {
+        var storage = gnViewerSettings.storage ?
+            window[gnViewerSettings.storage] : window.localStorage;
         if (map.getSize()[0] == 0 || map.getSize()[1] == 0) {
           // don't save a map which has not been rendered yet
           return;
