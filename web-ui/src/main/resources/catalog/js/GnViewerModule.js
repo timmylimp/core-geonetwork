@@ -1,11 +1,20 @@
 (function() {
-  goog.provide('gn_editor');
+  goog.provide('gn_viewer_module');
+
+
+
+
+
+
+
+
+
+
 
   goog.require('gn_batch_service');
   goog.require('gn_draggable_directive');
   goog.require('gn_editor_controller');
   goog.require('gn_geopublisher');
-  goog.require('gn_mdactions_directive');
   goog.require('gn_module');
   goog.require('gn_onlinesrc');
   goog.require('gn_ows');
@@ -13,7 +22,7 @@
   goog.require('gn_suggestion');
   goog.require('gn_validation');
 
-  var module = angular.module('gn_editor', [
+  var module = angular.module('gn_viewer', [
     'gn_module',
     'gn_popup',
     'gn_onlinesrc',
@@ -23,15 +32,11 @@
     'gn_editor_controller',
     'gn_ows',
     'gn_geopublisher',
-    'gn_batch_service',
-    'gn_mdactions_directive'
+    'gn_batch_service'
   ]);
 
   // Define the translation files to load
-  module.constant('$LOCALES', ['core', 'search', 'editor',
-    '/../api/0.1/tools/i18n/db?type=StatusValue']);
-
-  module.constant('gnViewerSettings', {});
+  module.constant('$LOCALES', ['core', 'editor']);
 
   module.config(['$translateProvider', '$LOCALES',
                  function($translateProvider, $LOCALES) {

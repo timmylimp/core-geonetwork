@@ -55,7 +55,6 @@
             layersCollection.insertAt(index + delta, layer);
           };
 
-
           /**
          * Set a property to the layer 'showInfo' to true and
          * false to all other layers. Used to display layer information
@@ -81,14 +80,6 @@
           scope.removeFailed = function(layer) {
             gnWmsQueue.removeFromError(layer);
           };
-
-          function resetPopup() {
-            // Hack to remove popup on layer remove eg.
-            $('[gn-popover-dropdown] .btn').each(function(i, button) {
-              $(button).popover('hide');
-            });
-          };
-          scope.map.getLayers().on('change:length', resetPopup);
         }
       };
     }]);
@@ -125,9 +116,6 @@
             gnMdView.openMdFromLayer(scope.layer);
           };
 
-          scope.removeLayer = function(layer, map) {
-            map.removeLayer(layer);
-          };
           scope.zoomToExtent = function(layer, map) {
             if (layer.get('cextent')) {
               map.getView().fit(layer.get('cextent'), map.getSize());

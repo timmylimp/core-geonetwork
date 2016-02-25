@@ -10,15 +10,15 @@
 
   module.constant('$LOCALES', ['core']);
 
-  module.factory('localeLoader', ['$http', '$q', 'gnLangs',
-    function($http, $q, gnLangs) {
+  module.factory('localeLoader', ['$http', '$q',
+    function($http, $q) {
     return function(options) {
 
       function buildUrl(prefix, lang, value, suffix) {
         if (value.indexOf('/') === 0) {
           return value.substring(1);
         } else {
-          return prefix + gnLangs.getIso2Lang(lang) + '-' + value + suffix;
+          return prefix + lang.substring(0, 2) + '-' + value + suffix;
         }
       };
       var allPromises = [];
@@ -60,17 +60,17 @@
 
   // TODO: could be improved instead of putting this in all main modules ?
   module.config(['$translateProvider', '$LOCALES', 'gnGlobalSettings',
-    'gnLangs',
-    function($translateProvider, $LOCALES, gnGlobalSettings, gnLangs) {
+    function($translateProvider, $LOCALES, gnGlobalSettings) {
       $translateProvider.useLoader('localeLoader', {
         locales: $LOCALES,
         prefix: (gnGlobalSettings.locale.path || '../../') + 'catalog/locales/',
         suffix: '.json'
       });
 
-      gnGlobalSettings.iso3lang = gnGlobalSettings.locale.iso3lang ||
-          location.href.split('/')[5] || 'eng';
-      gnGlobalSettings.lang = gnLangs.getIso2Lang(gnGlobalSettings.iso3lang);
+      gnGlobalSettings.iso3lang =
+        location.href.split('/')[5] || 'eng';
+      gnGlobalSettings.lang = gnGlobalSettings.locale.lang ||
+        gnGlobalSettings.iso3lang.substring(0, 2);
       $translateProvider.preferredLanguage(gnGlobalSettings.iso3lang);
       moment.lang(gnGlobalSettings.lang);
     }]);

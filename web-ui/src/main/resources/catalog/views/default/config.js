@@ -63,9 +63,6 @@
 
           };
 
-          // Object to store the current Map context
-          viewerSettings.storage = 'sessionStorage';
-
           /*******************************************************************
              * Define maps
              */
@@ -174,10 +171,9 @@
 
           // Mapping for md links in search result list.
           searchSettings.linkTypes = {
-            links: ['LINK', 'kml'],
+            links: ['LINK'],
             downloads: ['DOWNLOAD'],
-            //layers:['OGC', 'kml'],
-            layers:['OGC'],
+            layers:['OGC', 'kml'],
             maps: ['ows']
           };
 

@@ -22,28 +22,6 @@
     }
   });
 
-  module.constant('gnLangs', {
-    langs: {
-      'eng': 'en',
-      'dut': 'du',
-      'fre': 'fr',
-      'ger': 'ge',
-      'kor': 'ko',
-      'spa': 'es',
-      'cze': 'cz'
-    },
-    getIso2Lang: function(iso3lang) {
-      return this.langs[iso3lang];
-    },
-    getIso3Lang: function(iso2lang) {
-      for(p in this.langs) {
-        if(this.langs[p] == iso2lang) {
-          return p;
-        }
-      }
-    }
-  });
-
   /**
    * The catalogue controller takes care of
    * loading site information, check user login state
@@ -57,11 +35,9 @@
     '$scope', '$http', '$q', '$rootScope', '$translate',
     'gnSearchManagerService', 'gnConfigService', 'gnConfig',
     'gnGlobalSettings', '$location', 'gnUtilityService', 'gnSessionService',
-    'gnLangs',
     function($scope, $http, $q, $rootScope, $translate,
             gnSearchManagerService, gnConfigService, gnConfig,
-            gnGlobalSettings, $location, gnUtilityService, gnSessionService,
-            gnLangs) {
+            gnGlobalSettings, $location, gnUtilityService, gnSessionService) {
       $scope.version = '0.0.1';
       //Update Links for social media
       $scope.socialMediaLink = $location.absUrl();
@@ -76,7 +52,8 @@
       $scope.lang = tokens[5];
       $scope.nodeId = tokens[4];
       // TODO : get list from server side
-      $scope.langs = gnLangs.langs;
+      $scope.langs = {'eng': 'en', 'dut': 'du', 'fre': 'fr',
+        'ger': 'ge', 'kor': 'ko', 'spa': 'es', 'cze': 'cz'};
       // Lang names to be displayed in language selector
       $scope.langLabels = {'eng': 'English', 'dut': 'Nederlands',
         'fre': 'Français', 'ger': 'Deutsch', 'kor': '한국의',
