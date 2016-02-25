@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title></title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/mystyle.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/bootstrap.vertical-tabs.css">
+    <!-- Custom styles for this template -->
+    <link href="css/sticky-footer-navbar.css" rel="stylesheet">
+
+
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+    
+    <div class="container-fluid headbg"> 
+        <div> 
+            
+            <img src="images/Logo.png" class="img-responsive">
+        
+        </div> 
+            <p class="navbar-text navbar-right" id="nav_right">
+                <a href="#" data-toggle="modal" data-target=".bs-example-modal-sm"><span class="glyphicon glyphicon-log-in login-space"></span>เข้าสู่ระบบ</a>
+            </p> 
+        
+      </div>
+      <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+          <div class="modal-dialog modal-sm">
+            <div class="modal-content" id="login_modal">
+              <div class="row">
+                    <div class="col-md-12 text-right">
+                        <button type="button" class="close close-pad" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                    </div>
+              </div>
+              <div class="row">
+                    <div class="col-md-12 text-center">
+                       <h2 class="modal-co">เข้าสู่ระบบ</h2>
+                    </div>  
+              </div>    
+              <div class="row">
+                    <div class="col-md-10 col-md-offset-1 text-center">
+                        <input type="text" class="form-control" placeholder="ชื่อผู้ใช้">
+                    </div>  
+              </div>
+              <div class="row modal-space">
+                    <div class="col-md-10 col-md-offset-1 text-center">
+                        <input type="text" class="form-control " placeholder="รหัสผ่าน">
+                    </div>  
+              </div> 
+              <div class="row">
+                    <div class="col-md-10 col-md-offset-1 modal-link">
+                        <a href="#">ลืมรหัสผ่าน</a>
+                    </div>  
+              </div>
+              <div class="row">
+                    <div class="col-md-6 col-md-offset-3 ">
+                        <button type="button" class="btn orange-bg border-norad form-control btn-modal" >เข้าสู่ระบบ</button>
+                    </div>  
+              </div> 
+            </div>
+          </div>
+      </div>
+    
+      
+    
+    <!-- Fixed navbar -->
+    <nav class="navbar" id="navbar">
+      <div class="container-fluid headbg">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            </button>
+        </div>
+        
+        <div id="navbar" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav navbar-right" >
+            <li><a href="#">National Geospatial Catalogue</a></li>
+            <li><a href="#about">ค้นหา</a></li>
+            <li><a href="#contact">แผนที่</a></li>
+            <li id="mark">|</li>
+            <li><a href="#">ลงทะเบียน</a></li>
+            <li><a href="#">ลิงก์</a></li>
+            <li><a href="#">ช่วยเหลือ</a></li>
+            <li><a href="#">เกี่ยวกับ</a></li>
+			<li class="active"><a href="#">ติดต่อหน่วยงาน</a></li>
+            <li>
+                <select class="form-control select-lang">
+                    <option>ไทย</option>
+                    <option>English</option>
+                
+                </select>
+              </li>
+          </ul>
+        </div><!--/.nav-collapse -->
+        
+      </div>
+    </nav>
+      
+    <div>
+        <img src="images/contact-banner.png" class="img-responsive banner">  
+    </div>
+    
+      
+    <!-- Begin page content -->
+    <div class="">
+        <div id="content">
+            <br>
+          
+            <div class="row">
+                <div class="col-md-4 text-justify">
+                    <div class="col-md-12">
+                        <b>สำนักงานพัฒนาเทคโนโลยีอวกาศและภูมิสารสนเทศ (องค์การมหาชน)</b>
+                        
+                    </div>
+                    
+                    <div class="col-md-12 contact">
+                        
+                        <span class="glyphicon glyphicon-map-marker" id="glyphicon"></span> &nbsp; เลขที่ 120 หมู่ 3 อาคารรวม หน่วยราชการ (อาคารรัฐประศาสนภักดี) ชั้น 6 และชั้น 7 ถนนแจ้งวัฒนะ แขวงทุ่งสองห้อง เขตหลักสี่ กรุงเทพฯ ประเทศไทย 1021
+                    </div>
+                    
+                    <div class="col-md-12 contact">
+                        <img src="images/call.png">&nbsp;  0-2143-0569
+                    </div>
+                    <div class="col-md-12 contact">
+                        <img src="images/fax.png">&nbsp;  0-2143-9594
+                    </div>
+                    <div class="col-md-12 contact">
+                        <img src="images/mail.png">&nbsp;<a href="#">thaisdi@gistda.or.th</a>
+                    </div>
+                   
+                    
+                </div>
+                <div class="col-md-8 contact-top">
+                    <div class="col-md-12 ">
+                        <input type="text" class="form-control " placeholder="ชื่อ">
+                    </div>
+                    <div class="col-md-12">
+                        <input type="text" class="form-control contact" placeholder="องค์กร/แผนก">
+                    </div>
+                    <div class="col-md-12">
+                        <input type="text" class="form-control contact" placeholder="ที่อยู่อีเมล">
+                    </div>
+                    <div class="col-md-12">
+                        <textarea cols="5" class="form-control contact" placeholder="ความคิดเห็น"></textarea>
+                    </div>
+                    <div class="col-md-3 col-md-offset-9">
+                        <button type="button" class="btn orange-bg border-norad form-control btn-modal contact">ส่ง</button>
+                    </div>
+                    
+                </div>    
+            </div>
+        </div>
+    </div>
+      
+      
+      
+    <div class="clearfix"></div>
+    <br><br>
+        
+    <footer class="footer" id="footer">
+         <div class="container-fluid">
+            <p class="white footpad">Copyright © 2016 GISTDA. All rights reserved.</p>
+        </div>
+    </footer>
+
+   
+
+        <!-- Bootstrap core JavaScript
+        ================================================== -->
+        <!-- Placed at the end of the document so the pages load faster -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+
+  </body>
+</html>
+
