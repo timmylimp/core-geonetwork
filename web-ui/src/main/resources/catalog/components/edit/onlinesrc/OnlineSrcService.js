@@ -384,7 +384,6 @@
               uuidref: qParams.uuidSrv,
               uuid: qParams.uuidDS,
               url: qParams.url,
-              protocol: qParams.protocol,
               process: qParams.process
             }).then(function() {
               closePopup(popupid);
@@ -420,7 +419,6 @@
             url: qParams.url,
             uuidref: qParams.uuidSrv,
             uuid: qParams.uuidDS,
-            protocol: qParams.protocol,
             process: qParams.process
           }).then(function() {
             var qParams = setParams('dataset-add', params);

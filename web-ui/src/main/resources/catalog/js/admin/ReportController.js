@@ -42,6 +42,11 @@
               label: 'reportUsers',
               icon: 'fa-th',
               href: '#/reports/report-users'
+            },{
+              type: 'report-wms',
+              label: 'ข้อมูล WMS',
+              icon: 'fa-th',
+              href: '#/reports/report-wms'
             }]
       };
 

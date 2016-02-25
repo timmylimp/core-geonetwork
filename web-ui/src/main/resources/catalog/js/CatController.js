@@ -22,28 +22,6 @@
     }
   });
 
-  module.constant('gnLangs', {
-    langs: {
-      'eng': 'en',
-      'dut': 'du',
-      'fre': 'fr',
-      'ger': 'ge',
-      'kor': 'ko',
-      'spa': 'es',
-      'cze': 'cz'
-    },
-    getIso2Lang: function(iso3lang) {
-      return this.langs[iso3lang];
-    },
-    getIso3Lang: function(iso2lang) {
-      for (p in this.langs) {
-        if (this.langs[p] == iso2lang) {
-          return p;
-        }
-      }
-    }
-  });
-
   /**
    * The catalogue controller takes care of
    * loading site information, check user login state

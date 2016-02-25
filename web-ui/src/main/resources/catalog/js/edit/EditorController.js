@@ -244,6 +244,8 @@
       };
 
       $scope.$watch('gnCurrentEdit.isMinor', function() {
+ 
+          console.log($scope.gnCurrentEdit)
         if ($('#minor')[0]) {
           $('#minor')[0].value = $scope.gnCurrentEdit.isMinor;
         }
@@ -257,6 +259,7 @@
       $scope.onFormLoad = function() {
         gnEditor.onFormLoad();
         $scope.isMinor = gnCurrentEdit.isMinor;
+       
         $scope.$watch('tocIndex', function(newValue, oldValue) {
           if (angular.isDefined($scope.tocIndex) && $scope.tocIndex !== null) {
             $timeout(function() {

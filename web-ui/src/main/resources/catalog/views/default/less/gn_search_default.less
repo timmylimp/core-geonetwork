@@ -93,10 +93,7 @@
     }
   }
 }
-.gn-source-logo {
-  max-width: 60px;
-  max-height: 60px;
-}
+
 ul.gn-resultview {
   @thumbnail-width: 170px;
   margin-right: -15px;
@@ -172,7 +169,7 @@ ul.gn-resultview {
       vertical-align: text-bottom;
     }
     .gn-md-title {
-      margin-top: 2px;
+      margin-top: -2px;
       min-height: 3.5em;
       max-height: 3.5em;
       overflow: hidden;
@@ -199,8 +196,14 @@ ul.gn-resultview {
       }
     }
     .gn-source-logo {
+      //position: absolute;
+      //right: 0px;
+      margin: @grid-bottom-margin;
       z-index: 10;
-      height: 20px;
+      //border-radius: 50%;
+      //max-width: 24px;
+      height: 24px;
+      width: auto;
       float: right;
     }
     .gn-md-thumbnail {

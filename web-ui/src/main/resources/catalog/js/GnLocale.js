@@ -10,52 +10,48 @@
 
   module.constant('$LOCALES', ['core']);
 
-  module.factory('localeLoader', ['$http', '$q', 'gnLangs',
-    function($http, $q, gnLangs) {
-      return function(options) {
+  module.factory('localeLoader', ['$http', '$q', function($http, $q) {
+    return function(options) {
 
-        function buildUrl(prefix, lang, value, suffix) {
-          if (value.indexOf('/') === 0) {
-            return value.substring(1);
-          } else {
-            return prefix + gnLangs.getIso2Lang(lang) + '-' + value + suffix;
-          }
-        };
-        var allPromises = [];
-        angular.forEach(options.locales, function(value, index) {
-          var langUrl = buildUrl(options.prefix, options.key,
-              value, options.suffix);
+      function buildUrl(prefix, lang, value, suffix) {
+        if (value.indexOf('/') === 0) {
+          return value.substring(1);
+        } else {
+          return prefix + lang + '-' + value + suffix;
+        }
+      };
+      var allPromises = [];
+      angular.forEach(options.locales, function(value, index) {
+        var langUrl = buildUrl(options.prefix, options.key,
+            value, options.suffix);
 
-          var deferredInst = $q.defer();
-          allPromises.push(deferredInst.promise);
+        var deferredInst = $q.defer();
+        allPromises.push(deferredInst.promise);
 
+        $http({
+          method: 'GET',
+          url: langUrl
+        }).success(function(data) {
+          deferredInst.resolve(data);
+        }).error(function() {
+          // Load english locale file if not available
           $http({
             method: 'GET',
-            url: langUrl,
-            headers: {
-              'Accept-Language': options.key
-            }
+            url: buildUrl(options.prefix, 'en', value, options.suffix)
           }).success(function(data) {
             deferredInst.resolve(data);
           }).error(function() {
-            // Load english locale file if not available
-            $http({
-              method: 'GET',
-              url: buildUrl(options.prefix, 'en', value, options.suffix)
-            }).success(function(data) {
-              deferredInst.resolve(data);
-            }).error(function() {
-              deferredInst.reject(options.key);
-            });
+            deferredInst.reject(options.key);
           });
         });
+      });
 
-        // Finally, create a single promise containing all the promises
-        // for each app module:
-        var deferred = $q.all(allPromises);
-        return deferred;
-      };
-    }]);
+      // Finally, create a single promise containing all the promises
+      // for each app module:
+      var deferred = $q.all(allPromises);
+      return deferred;
+    };
+  }]);
 
 
   // TODO: could be improved instead of putting this in all main modules ?
@@ -67,11 +63,9 @@
         suffix: '.json'
       });
 
-      gnGlobalSettings.iso3lang =
-        location.href.split('/')[5] || 'eng';
       gnGlobalSettings.lang = gnGlobalSettings.locale.lang ||
-        gnGlobalSettings.iso3lang.substring(0, 2);
-      $translateProvider.preferredLanguage(gnGlobalSettings.iso3lang);
+          location.href.split('/')[5].substring(0, 2) || 'en';
+      $translateProvider.preferredLanguage(gnGlobalSettings.lang);
       moment.lang(gnGlobalSettings.lang);
     }]);
 

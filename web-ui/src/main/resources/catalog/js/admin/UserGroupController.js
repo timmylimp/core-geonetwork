@@ -85,6 +85,7 @@
         $http.get('admin.group.list?_content_type=json').
             success(function(data) {
               $scope.groups = data !== 'null' ? data : null;
+              //console.log(JSON.stringify($rootScope));
               //Fixing true not equal to "true" and
               //Simplifying the allowed categories list
               angular.forEach($scope.groups, function(u) {
@@ -133,7 +134,7 @@
         $scope.isLoadingUsers = true;
         $http.get('admin.user.list?_content_type=json').success(function(data) {
           $scope.users = data.users;
-          $scope.isLoadingUsers = false;
+            $scope.isLoadingUsers = false;
         }).error(function(data) {
           // TODO
           $scope.isLoadingUsers = false;
@@ -142,7 +143,7 @@
           // in the list and trigger user selection.
           if ($routeParams.userOrGroup || $routeParams.userOrGroupId) {
             angular.forEach($scope.users, function(u) {
-
+                
               if (u.value.username === $routeParams.userOrGroup ||
                   $routeParams.userOrGroupId === u.value.id.toString()) {
                 $scope.selectUser(u);
@@ -150,6 +151,7 @@
             });
           }
         });
+        
       }
 
 

@@ -88,9 +88,7 @@
         };
 
         var getImageSourceRatio = function(map, maxWidth) {
-          var width = map.getSize()[0] || $('.gn-full').width();
-          var ratio = maxWidth / width;
-          ratio = Math.floor(ratio * 100) / 100;
+          var ratio = maxWidth / map.getSize()[0];
           return Math.min(1.5, Math.max(1, ratio));
         };
 
@@ -1412,7 +1410,8 @@
                 return new ol.layer.Tile({
                   preload: Infinity,
                   source: new ol.source.BingMaps({
-                    key: viewerSettings.bingKey,
+                    key: 'Ak-dzM4wZjSqTlzveKz5u0d4I' +
+                        'Q4bRzVI309GxmkgSVr1ewS6iPSrOvOKhA-CJlm3',
                     imagerySet: 'Aerial'
                   }),
                   title: 'Bing Aerial'

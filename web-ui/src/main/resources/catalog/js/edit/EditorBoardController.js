@@ -58,7 +58,7 @@
       $scope.deleteRecord = function(md) {
         var deferred = $q.defer();
 
-        gnMetadataActions.deleteMd(md).
+        gnMetadataActions.deleteMd(md, $scope.searchObj.params).
             then(function(data) {
               $rootScope.$broadcast('StatusUpdated', {
                 title: $translate('metadataRemoved',

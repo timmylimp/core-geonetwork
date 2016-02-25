@@ -71,9 +71,7 @@
         var layersToRemove = [];
         map.getLayers().forEach(function(layer) {
           if (layer.displayInLayerManager) {
-            if (!(layer.get('fromUrlParams') && firstLoad)) {
-              layersToRemove.push(layer);
-            }
+            layersToRemove.push(layer);
           }
         });
         for (var i = 0; i < layersToRemove.length; i++) {
@@ -143,7 +141,7 @@
 
         // if there's at least one valid bg layer in the context use them for
         // the application otherwise use the defaults from config
-        $q.all(promises).then (function() {
+        $q.all(promises).finally (function() {
           if (bgLayers.length > 0) {
             // make sure we remove any existing bglayer
             if (map.getLayers().getLength() > 0) {
@@ -323,8 +321,6 @@
        * @param {ol.Map} map object
        */
       this.saveToLocalStorage = function(map) {
-        var storage = gnViewerSettings.storage ?
-            window[gnViewerSettings.storage] : window.localStorage;
         if (map.getSize()[0] == 0 || map.getSize()[1] == 0) {
           // don't save a map which has not been rendered yet
           return;
@@ -375,7 +371,7 @@
                     olL.set('bgIdx', bgIdx);
                   }
                   return olL;
-                }).catch(function(){});
+                });
           }
         }
         else { // we suppose it's WMS
@@ -391,7 +387,7 @@
                   olL.set('label', layer.title);
                 }
                 return olL;
-              }).catch(function(){});
+              });
         }
       };
     }

@@ -118,9 +118,6 @@
           });
 
           // load context from url or from storage
-          var storage = gnViewerSettings.storage ?
-              window[gnViewerSettings.storage] : window.localStorage;
-              
           if (gnViewerSettings.owsContext) {
             gnOwsContextService.loadContextFromUrl(gnViewerSettings.owsContext,
                 scope.map, true);
